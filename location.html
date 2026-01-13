@@ -1,0 +1,709 @@
+
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demande de location - Home Cameroon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configuration Tailwind pour les couleurs HMC
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hmc-primary': '#1F1438',
+                        'hmc-secondary': '#8E2B1E',
+                        'hmc-accent': '#F26A21',
+                        'hmc-light': '#F7F7F9',
+                             'custom-primary': '#E54801',
+                        'custom-secondary': '#913327',
+                        'custom-dark': '#1B0B38',
+                            
+                    }
+                }
+            }
+        }
+    </script>
+
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles personnalisés */
+        .step-active {
+            background: linear-gradient(135deg, #1F1438 0%, #8E2B1E 100%);
+            color: white;
+        }
+
+        .step-completed {
+            background-color: #10B981;
+            color: white;
+        }
+
+        .step-inactive {
+            background-color: #E5E7EB;
+            color: #6B7280;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Animation pour le modal */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-animation {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Animation de chargement */
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    
+        .feature-checked {
+            color: #1B0B38;
+            font-weight: 500;
+        }
+    
+        .feature-unchecked {
+            color: #999;
+        }
+    
+        .check-icon {
+            color: #E54801;
+        }
+    
+        .image-counter {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    
+        input[type="checkbox"]:checked {
+            accent-color: #E54801;
+        }
+    
+        input[type="range"] {
+            accent-color: #E54801;
+        }
+    
+        .announcement-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+    
+        .tag-new {
+            background-color: #10B981;
+            color: white;
+        }
+    
+        .tag-popular {
+            background-color: #E54801;
+            color: white;
+        }
+    
+        .tag-exclusive {
+            background-color: #8B5CF6;
+            color: white;
+        }
+    
+        .filter-section {
+            transition: all 0.3s ease;
+        }
+    
+        .filter-option:hover {
+            background-color: #f9fafb;
+            border-radius: 4px;
+            padding-left: 4px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+    <!-- Header HMC -->
+<nav class="w-full bg-[#FFFDF9] border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Home Cameroon Logo" class="h-8 w-auto">
+                <span class="font-semibold text-sm text-gray-900">
+                    Home Cameroon
+                </span>
+            </div>
+
+            <!-- Desktop menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#" class="text-sm font-medium text-orange-600">
+                    Accueil
+                </a>
+                <a href="#" class="text-sm font-medium text-gray-500 hover:text-orange-600">
+                    Annonces
+                </a>
+                <a href="#" class="text-sm font-medium text-gray-500 hover:text-orange-600">
+                    À propos
+                </a>
+                <a href="#" class="text-sm font-medium text-gray-500 hover:text-orange-600">
+                    Contact
+                </a>
+            </div>
+
+            <!-- Desktop actions -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+                    <i class="fa-solid fa-lock text-sm"></i>
+                    Se connecter
+                </a>
+
+                <a href="#"
+                    class="bg-indigo-900 text-white text-sm font-semibold px-5 py-2 rounded-full hover:bg-indigo-800 transition">
+                    Inscrire une location
+                </a>
+            </div>
+
+            <!-- Mobile burger -->
+            <div class="md:hidden relative">
+                <input type="checkbox" id="" class="hidden peer">
+
+                <label for="" class="cursor-pointer">
+                    <i class="fa-solid fa-bars text-xl text-gray-800"></i>
+                </label>
+
+                <!-- Mobile menu -->
+                <div class="absolute left-0 top-16 w-full bg-white border-t border-gray-200
+                           hidden peer-checked:block shadow-md">
+
+                    <div class="flex flex-col px-6 py-4 gap-4">
+                        <a href="#" class="text-sm font-medium text-orange-600">
+                            Accueil
+                        </a>
+                        <a href="#" class="text-sm font-medium text-gray-600 hover:text-orange-600">
+                            Annonces
+                        </a>
+                        <a href="#" class="text-sm font-medium text-gray-600 hover:text-orange-600">
+                            À propos
+                        </a>
+                        <a href="#" class="text-sm font-medium text-gray-600 hover:text-orange-600">
+                            Contact
+                        </a>
+
+                        <hr class="my-2">
+
+                        <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <i class="fa-solid fa-lock text-sm"></i>
+                            Se connecter
+                        </a>
+
+                        <a href="#"
+                            class="bg-indigo-900 text-white text-sm font-semibold text-center py-2 rounded-full">
+                            Inscrire une location
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+
+  <main class="min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <!-- En-tête avec progression -->
+        <div class="bg-white rounded-xl shadow-sm p-5 mb-6">
+            <div class="mb-6">
+                <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Demande de location</h1>
+                <p class="text-gray-600 mt-1 text-sm">Appartement moderne à Bastos</p>
+            </div>
+
+            <!-- Barre de progression simplifiée -->
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">Étape <span id="current-step">1</span> sur 2</span>
+                <span id="step-title" class="text-sm text-hmc-orange font-medium">Informations & Documents</span>
+            </div>
+            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-hmc-orange transition-all duration-300" style="width: 50%"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-500 mt-2">
+                <span>Informations & Documents</span>
+                <span>Validation & Soumission</span>
+            </div>
+        </div>
+
+        <!-- ÉTAPE 1: Informations & Documents -->
+        <div id="step-1" class="form-step space-y-6">
+            <!-- Section 1: Identité -->
+            <div class="bg-white rounded-xl shadow-sm p-5">
+                <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-user-circle text-hmc-orange mr-2"></i>
+                    Informations personnelles
+                </h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Prénom <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-hmc-orange focus:border-transparent"
+                            placeholder="Votre prénom" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Nom <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-hmc-orange focus:border-transparent"
+                            placeholder="Votre nom" required>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Email <span class="text-red-500">*</span>
+                        </label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-hmc-orange focus:border-transparent"
+                            placeholder="exemple@email.com" required>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Téléphone <span class="text-red-500">*</span>
+                        </label>
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <select class="h-full px-4 py-3 border border-r-0 rounded-l-lg border-gray-300 bg-gray-50 text-gray-700">
+                                    <option value="237" selected>🇨🇲 +237</option>
+                                </select>
+                            </div>
+                            <input type="tel" class="flex-1 px-4 py-3 border rounded-r-lg focus:ring-2 focus:ring-hmc-orange focus:border-transparent border-l-0"
+                                placeholder="6XX XX XX XX" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Documents obligatoires -->
+            <div class="bg-white rounded-xl shadow-sm p-5">
+                <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-file-alt text-hmc-orange mr-2"></i>
+                    Documents obligatoires
+                </h2>
+                <p class="text-gray-600 text-sm mb-4">Téléchargez les documents requis pour votre dossier</p>
+
+                <div class="space-y-4">
+                    <!-- CIN Recto -->
+                    <div class="document-card">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-medium text-gray-900">CIN Recto <span class="text-red-500">*</span></h3>
+                                <p class="text-sm text-gray-500">Photo recto de votre carte d'identité</p>
+                            </div>
+                            <span class="document-status pending">En attente</span>
+                        </div>
+                        <div class="document-upload mt-3">
+                            <input type="file" class="hidden" accept="image/*,.pdf">
+                            <div class="upload-area">
+                                <i class="fas fa-cloud-upload-alt text-2xl text-gray-400"></i>
+                                <p class="text-gray-600 text-sm mt-2">Cliquez pour télécharger</p>
+                                <p class="text-xs text-gray-500 mt-1">JPG, PNG ou PDF • max 5MB</p>
+                            </div>
+                        </div>
+                        <div class="document-preview hidden mt-3"></div>
+                    </div>
+
+                    <!-- CIN Verso -->
+                    <div class="document-card">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-medium text-gray-900">CIN Verso <span class="text-red-500">*</span></h3>
+                                <p class="text-sm text-gray-500">Photo verso de votre carte d'identité</p>
+                            </div>
+                            <span class="document-status pending">En attente</span>
+                        </div>
+                        <div class="document-upload mt-3">
+                            <input type="file" class="hidden" accept="image/*,.pdf">
+                            <div class="upload-area">
+                                <i class="fas fa-cloud-upload-alt text-2xl text-gray-400"></i>
+                                <p class="text-gray-600 text-sm mt-2">Cliquez pour télécharger</p>
+                                <p class="text-xs text-gray-500 mt-1">JPG, PNG ou PDF • max 5MB</p>
+                            </div>
+                        </div>
+                        <div class="document-preview hidden mt-3"></div>
+                    </div>
+
+                    <!-- Justificatif de domicile -->
+                    <div class="document-card">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-medium text-gray-900">Justificatif de domicile <span class="text-red-500">*</span></h3>
+                                <p class="text-sm text-gray-500">Facture d'eau, électricité ou téléphone</p>
+                            </div>
+                            <span class="document-status pending">En attente</span>
+                        </div>
+                        <div class="document-upload mt-3">
+                            <input type="file" class="hidden" accept="image/*,.pdf">
+                            <div class="upload-area">
+                                <i class="fas fa-cloud-upload-alt text-2xl text-gray-400"></i>
+                                <p class="text-gray-600 text-sm mt-2">Cliquez pour télécharger</p>
+                                <p class="text-xs text-gray-500 mt-1">JPG, PNG ou PDF • max 5MB</p>
+                            </div>
+                        </div>
+                        <div class="document-preview hidden mt-3"></div>
+                    </div>
+
+                    <!-- Bulletin de salaire (Optionnel) -->
+                    <div class="document-card">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-medium text-gray-900">Bulletin de salaire</h3>
+                                <p class="text-sm text-gray-500">3 derniers mois (optionnel mais recommandé)</p>
+                            </div>
+                            <span class="document-status optional">Optionnel</span>
+                        </div>
+                        <div class="document-upload mt-3">
+                            <input type="file" class="hidden" accept="image/*,.pdf" multiple>
+                            <div class="upload-area">
+                                <i class="fas fa-cloud-upload-alt text-2xl text-gray-400"></i>
+                                <p class="text-gray-600 text-sm mt-2">Ajouter jusqu'à 3 fichiers</p>
+                                <p class="text-xs text-gray-500 mt-1">JPG, PNG ou PDF • max 5MB chacun</p>
+                            </div>
+                        </div>
+                        <div class="document-preview hidden mt-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Consentement -->
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-5">
+                <label class="flex items-start">
+                    <input type="checkbox" class="mt-1 h-5 w-5 rounded focus:ring-hmc-orange border-gray-300" required>
+                    <span class="ml-3 text-gray-700 text-sm">
+                        Je certifie que les informations fournies sont exactes et j'accepte les 
+                        <a href="#" class="text-hmc-orange hover:underline">Conditions Générales</a> 
+                        et la <a href="#" class="text-hmc-orange hover:underline">Politique de Confidentialité</a>.
+                        <span class="text-red-500">*</span>
+                    </span>
+                </label>
+            </div>
+        </div>
+
+        <!-- ÉTAPE 2: Validation & Soumission -->
+        <div id="step-2" class="form-step hidden space-y-6">
+         
+
+            <!-- Frais de dossier -->
+            <div class="bg-white rounded-xl shadow-sm p-5">
+                <h3 class="font-bold text-gray-900 mb-4">Frais de dossier</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                        <span class="text-gray-600">Frais d'étude de dossier</span>
+                        <span class="font-medium">10 000 FCFA</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3">
+                        <span class="text-lg font-bold text-gray-900">Total à payer</span>
+                        <span class="text-2xl font-bold text-hmc-orange">10 000 FCFA</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-3">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Ces frais seront remboursés si votre dossier est refusé par le propriétaire
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mode de paiement -->
+            <div class="bg-white rounded-xl shadow-sm p-5">
+                <h3 class="font-bold text-gray-900 mb-4">Mode de paiement</h3>
+                <div class="grid grid-cols-1 gap-3">
+                    <label class="payment-option">
+                        <input type="radio" name="paymentMethod" value="mobile" checked class="hidden">
+                        <div class="flex items-center space-x-4 p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-hmc-orange">
+                            <div class="w-12 h-12 bg-hmc-orange/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-mobile-alt text-xl text-hmc-orange"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-medium text-gray-900">Mobile Money</div>
+                                <div class="text-sm text-gray-500">Orange Money • MTN Mobile Money</div>
+                            </div>
+                            <i class="fas fa-check-circle text-xl text-hmc-orange payment-check hidden"></i>
+                        </div>
+                    </label>
+
+                    <label class="payment-option">
+                        <input type="radio" name="paymentMethod" value="card" class="hidden">
+                        <div class="flex items-center space-x-4 p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-hmc-orange">
+                            <div class="w-12 h-12 bg-hmc-orange/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-credit-card text-xl text-hmc-orange"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-medium text-gray-900">Carte bancaire</div>
+                                <div class="text-sm text-gray-500">Visa • Mastercard • UnionPay</div>
+                            </div>
+                            <i class="fas fa-check-circle text-xl text-hmc-orange payment-check hidden"></i>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Confirmation finale -->
+            <div class="bg-yellow-50 border border-yellow-100 rounded-xl p-5">
+                <div class="flex items-start">
+                    <i class="fas fa-exclamation-triangle text-yellow-600 text-xl mr-3 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-gray-900 mb-2">Confirmation finale</h4>
+                        <p class="text-sm text-gray-700">
+                            En cliquant sur "Soumettre ma demande", vous acceptez de payer les frais de dossier 
+                            et vous confirmez que toutes les informations fournies sont exactes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex flex-col sm:flex-row justify-between items-center mt-8 pt-6 border-t border-gray-200 space-y-4 sm:space-y-0">
+            <button id="prevBtn" class="hidden px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition font-medium">
+                <i class="fas fa-chevron-left mr-2"></i>
+                Retour
+            </button>
+
+            <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+                <button id="saveDraftBtn" class="w-full sm:w-auto px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium text-center">
+                    <i class="fas fa-save mr-2"></i>
+                    Enregistrer brouillon
+                </button>
+
+                <button id="nextBtn" class="w-full sm:w-auto px-8 py-3 rounded-lg font-medium transition bg-hmc-orange hover:bg-hmc-red text-white text-center">
+                    <span id="nextBtnText">Continuer vers validation</span>
+                    <i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer HMC -->
+<!-- Footer -->
+<footer class="bg-custom-dark text-white mt-12">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Colonne 1 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Home Cameroun</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        La plateforme n°1 pour trouver votre logement idéal au Cameroun. Studios, chambres,
+                        appartements, maisons et villas modernes à Yaoundé, Douala et partout au pays.
+                    </p>
+                </div>
+    
+                <!-- Colonne 2 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="text-gray-300 hover:text-white transition">Accueil</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">Catégories</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">Toutes les annonces</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">Publier une annonce</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">À propos</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition">Contact</a>
+                    </div>
+                </div>
+    
+                <!-- Colonne 3 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-custom-primary mr-3"></i>
+                            <span class="text-gray-300">+237 6 99 99 99 99</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-custom-primary mr-3"></i>
+                            <span class="text-gray-300">contact@homecameroun.cn</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-custom-primary mr-3"></i>
+                            <span class="text-gray-300">Yaoundé & Douala, Cameroun</span>
+                        </div>
+                    </div>
+    
+                    <h3 class="text-xl font-bold mt-6 mb-4">Suivez-nous</h3>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-custom-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-custom-primary transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-custom-primary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-custom-primary transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Bas de footer -->
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2026 Home Cameroun - Tous droits réservés.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Mentions légales</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Politique de
+                        confidentialité</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Conditions d'utilisation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de succès -->
+    <div id="successModal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full modal-animation">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-check text-2xl text-green-600"></i>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Demande envoyée avec succès !</h3>
+                <p class="text-gray-600 mb-6">
+                    Votre dossier de location a été soumis. Vous recevrez un email de confirmation
+                    avec votre numéro de dossier <strong id="applicationNumber"
+                        class="text-hmc-primary">HMC-123456</strong>
+                </p>
+
+                <div class="space-y-3">
+                    <button id="goToDashboardBtn"
+                        class="w-full bg-gradient-to-r from-hmc-primary to-hmc-secondary text-white py-3 rounded-lg font-medium hover:opacity-90 transition">
+                        Voir mon dossier
+                    </button>
+                    <button id="closeModalBtn"
+                        class="w-full border border-gray-300 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-50 transition">
+                        Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+  
+        
+        <!-- Styles pour les documents et upload -->
+        <style>
+        .document-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            transition: border-color 0.2s;
+        }
+        
+        .document-card:hover {
+            border-color: #f97316;
+        }
+        
+        .document-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 500;
+        }
+        
+        .document-status.pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        
+        .document-status.optional {
+            background-color: #f3f4f6;
+            color: #6b7280;
+        }
+        
+        .upload-area {
+            border: 2px dashed #d1d5db;
+            border-radius: 0.5rem;
+            padding: 2rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .upload-area:hover {
+            border-color: #f97316;
+            background-color: #fffbeb;
+        }
+        
+        .payment-option input:checked + div {
+            border-color: #f97316;
+            background-color: #fffbeb;
+        }
+        
+        .payment-option input:checked + div .payment-check {
+            display: block;
+        }
+        
+        .form-step {
+            display: block;
+        }
+        
+      
+        
+        @media (max-width: 640px) {
+            .document-card {
+                padding: 0.75rem;
+            }
+            
+            .upload-area {
+                padding: 1.5rem 0.75rem;
+            }
+        }
+        </style>
