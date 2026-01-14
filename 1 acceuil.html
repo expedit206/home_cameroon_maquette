@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Cameroon - Plateforme locative sécurisée</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
+
+        .property-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-card {
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+
+        .pagination-btn.active {
+            background-color: #f97316;
+            color: white;
+        }
+
+        .stats-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 640px) {
+            .hero-section {
+                padding-top: 120px !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-home text-white text-lg"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">Home Cameroon</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-orange-600 font-medium">Accueil</a>
+                    <a href="#" class="text-gray-600 hover:text-orange-600 font-medium">Annonces</a>
+                    <a href="#" class="text-gray-600 hover:text-orange-600 font-medium">À propos</a>
+                    <a href="#" class="text-gray-600 hover:text-orange-600 font-medium">Contact</a>
+                </div>
+
+                <!-- Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#"
+                        class="px-4 py-2 border border-orange-600 text-orange-600 rounded-lg hover:bg-orange-50 transition">
+                        Se connecter
+                    </a>
+                    <a href="#" class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition">
+                        Inscrire une location
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile menu (hidden by default) -->
+            <div id="mobile-menu" class="md:hidden hidden pb-4">
+                <div class="flex flex-col space-y-4 pt-4">
+                    <a href="#" class="text-orange-600 font-medium py-2">Accueil</a>
+                    <a href="#" class="text-gray-600 hover:text-orange-600 font-medium py-2">Annonces</a>
+                    <a href="#" class="text-gray-600 hover:text-orange-600 font-medium py-2">À propos</a>
+                    <a href="#" class="text-gray-600 hover:text-orange-600 font-medium py-2">Contact</a>
+                    <div class="flex flex-col space-y-2 pt-2">
+                        <a href="#"
+                            class="px-4 py-2 border border-orange-600 text-orange-600 rounded-lg text-center hover:bg-orange-50 transition">
+                            Se connecter
+                        </a>
+                        <a href="#"
+                            class="px-4 py-2 bg-orange-600 text-white rounded-lg text-center hover:bg-orange-700 transition">
+                            Inscrire une location
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<section class="relative overflow-hidden text-[#FAF9F5] group">
+    <!-- Image de fond -->
+    <div class="absolute inset-0 bg-center bg-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        style="background-image: url('./maison.jpg');"></div>
+
+    <!-- Overlay sombre (lisibilité) -->
+    <div class="absolute inset-0 bg-[#1B0B3849]"></div>
+
+    <!-- Contenu -->
+    <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
+        <div class="max-w-3xl">
+
+            <!-- Badge -->
+            <span class="inline-block mb-4 px-4 py-1 rounded-full text-sm font-semibold bg-[#E54801] text-[#FAF9F5]">
+                Plateforme 100% Camerounaise
+            </span>
+
+            <!-- Titre -->
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+                Trouvez votre logement<br class="hidden md:block">
+                <span class="text-[#E54801]">au cœur du Cameroun</span>
+            </h1>
+
+            <!-- Description -->
+            <p class="text-base md:text-xl mb-8">
+                Une plateforme immobilière locale conçue pour faciliter
+                la recherche, la location et la gestion de biens partout
+                au Cameroun.
+            </p>
+
+            <!-- Formulaire -->
+            <div class="bg-[#FAF9F5] rounded-2xl p-4 md:p-6 shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[#1B0B38]">
+
+                    <select class="w-full px-4 py-3 rounded-lg border border-[#1B0B38] text-sm">
+                        <option>Ville</option>
+                        <option>Yaoundé</option>
+                        <option>Douala</option>
+                        <option>Bafoussam</option>
+                    </select>
+
+                    <select class="w-full px-4 py-3 rounded-lg border border-[#1B0B38] text-sm">
+                        <option>Type de bien</option>
+                        <option>Appartement</option>
+                        <option>Maison</option>
+                        <option>Studio</option>
+                    </select>
+
+                    <button class="w-full bg-[#E54801] text-[#FAF9F5] font-semibold rounded-lg py-3">
+                        Rechercher
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- Stats (desktop) -->
+            <div class="hidden md:flex gap-10 mt-12">
+                <div>
+                    <p class="text-2xl font-bold text-[#E54801]">+1 200</p>
+                    <p>Biens disponibles</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-[#E54801]">+300</p>
+                    <p>Propriétaires</p>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-[#E54801]">10 régions</p>
+                    <p>Couverture nationale</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Parcourir par catégorie -->
+<section class="max-w-7xl mx-auto py-8 md:py-12 px-4">
+    <!-- Titre de la section -->
+    <div class="mb-10 md:mb-12 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#1B0B38] mb-3">Parcourir par catégorie</h2>
+        <p class="text-[#913327] text-lg">Trouvez rapidement le type de bien qui vous correspond.</p>
+    </div>
+
+    <!-- Grille des catégories -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <!-- Carte 1: Chambre -->
+        <div class="bg-[#FAF9F5] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="h-48 bg-[#E54801] flex items-center justify-center p-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[#913327] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bed text-[#FAF9F5] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-[#1B0B38]">Chambre</h3>
+                </div>
+            </div>
+            <div class="p-6">
+                <p class="text-[#913327] mb-4">Chambres à louer dans l'espace décrochée</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-[#E54801] font-medium">59 annonces</span>
+                    <span class="text-[#1B0B38] text-sm">156 annonces</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte 2: Appartement Meublé -->
+        <div class="bg-[#FAF9F5] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="h-48 bg-[#913327] flex items-center justify-center p-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[#E54801] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-home text-[#FAF9F5] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-[#1B0B38]">Appartement Meublé</h3>
+                </div>
+            </div>
+            <div class="p-6">
+                <p class="text-[#913327] mb-4">Chambres à louer dans l'espace récente</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-[#E54801] font-medium">156 annonces</span>
+                    <span class="text-[#1B0B38] text-sm"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte 3: Studio Confortable -->
+        <div class="bg-[#FAF9F5] rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="h-48 bg-[#1B0B38] flex items-center justify-center p-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[#913327] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-couch text-[#FAF9F5] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-[#1B0B38]">Studio Confortable™</h3>
+                </div>
+            </div>
+            <div class="p-6">
+                <p class="text-[#913327] mb-4">Studio moderne et fonctionnel</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-[#E54801] font-medium">156 annonces</span>
+                    <span class="text-[#1B0B38] text-sm">25 annonces</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte 4: Tout explorer -->
+        <div
+            class="bg-[#FAF9F5] rounded-xl shadow-md overflow-hidden border-2 border-dashed border-[#913327] flex flex-col justify-center items-center p-6">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-[#1B0B38] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-compass text-[#FAF9F5] text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-[#1B0B38]">Tout explorer</h3>
+            </div>
+            <div class="text-center">
+                <p class="text-[#913327] mb-4">Appartements, chambres, studios et plus</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-[#E54801] font-medium">25 annonces</span>
+                    <span class="text-[#1B0B38] text-sm"></span>
+                </div>
+                <button
+                    class="mt-6 bg-[#E54801] hover:bg-[#913327] text-[#FAF9F5] font-medium py-3 px-6 rounded-lg transition-colors duration-300">
+                    Explorer tout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informations supplémentaires -->
+    <div class="bg-[#FAF9F5] rounded-xl shadow-sm p-6 border border-[#913327]">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-0">
+            <div>
+                <h4 class="text-lg font-semibold text-[#1B0B38] mb-2">Vous ne trouvez pas ce que vous cherchez ?</h4>
+                <p class="text-[#913327]">Consultez toutes nos annonces ou utilisez notre outil de recherche avancée.
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 mt-4 sm:mt-0">
+                <button
+                    class="bg-[#FAF9F5] hover:bg-[#E54801] hover:text-[#FAF9F5] text-[#1B0B38] font-medium py-3 px-5 rounded-lg transition-colors duration-300 border border-[#913327]">
+                    Voir toutes les annonces
+                </button>
+                <button
+                    class="bg-[#E54801] hover:bg-[#913327] text-[#FAF9F5] font-medium py-3 px-5 rounded-lg transition-colors duration-300">
+                    Recherche avancée
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section class="bg-[#FAF9F5] py-8 relative z-10 px-4 -mt-4">
+    <div class="max-w-4xl mx-auto">
+        <div class="bg-[#FAF9F5] rounded-xl shadow-lg p-6 border border-[#913327]">
+            <h2 class="text-2xl font-bold text-center mb-6 text-[#1B0B38]">
+                Trouvez votre logement idéal en toute sécurité
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Ville -->
+                <div>
+                    <label class="block text-sm font-medium text-[#1B0B38] mb-2">Ville</label>
+                    <select
+                        class="w-full px-4 py-3 border border-[#913327] rounded-lg focus:ring-2 focus:ring-[#E54801] focus:border-[#E54801]">
+                        <option value="">Sélectionnez une ville</option>
+                        <option value="bafoussam" selected>Bafoussam</option>
+                        <option value="yaounde">Yaoundé</option>
+                        <option value="douala">Douala</option>
+                        <option value="garoua">Garoua</option>
+                    </select>
+                </div>
+
+                <!-- Catégorie -->
+                <div>
+                    <label class="block text-sm font-medium text-[#1B0B38] mb-2">Catégorie</label>
+                    <select
+                        class="w-full px-4 py-3 border border-[#913327] rounded-lg focus:ring-2 focus:ring-[#E54801] focus:border-[#E54801]">
+                        <option value="">Toutes catégories</option>
+                        <option value="appartement" selected>Appartement</option>
+                        <option value="studio">Studio</option>
+                        <option value="chambre">Chambre</option>
+                        <option value="villa">Villa</option>
+                    </select>
+                </div>
+
+                <!-- Prix Max -->
+                <div>
+                    <label class="block text-sm font-medium text-[#1B0B38] mb-2">Prix Max</label>
+                    <select
+                        class="w-full px-4 py-3 border border-[#913327] rounded-lg focus:ring-2 focus:ring-[#E54801] focus:border-[#E54801]">
+                        <option value="">Tous les prix</option>
+                        <option value="40000" selected>40 000 FCFA</option>
+                        <option value="60000">60 000 FCFA</option>
+                        <option value="100000">100 000 FCFA</option>
+                        <option value="150000">150 000 FCFA</option>
+                    </select>
+                </div>
+
+                <!-- Bouton Recherche -->
+                <div class="flex items-end">
+                    <button
+                        class="w-full bg-[#E54801] hover:bg-[#913327] text-[#FAF9F5] font-medium py-3 px-6 rounded-lg transition-colors duration-300">
+                        Lancer la recherche
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Categories Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Parcourir par catégorie</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Explorez les logements. Trouvez rapidement le type de bien qui vous correspond.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Appartement -->
+                <div class="category-card bg-white rounded-xl shadow-sm p-6 text-center hover:shadow-md cursor-pointer">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-building text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Appartement</h3>
+                    <p class="text-gray-600 mb-4">156 annonces disponibles</p>
+                    <a href="#" class="text-orange-600 font-medium hover:text-orange-700">
+                        Explorer <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Studio -->
+                <div class="category-card bg-white rounded-xl shadow-sm p-6 text-center hover:shadow-md cursor-pointer">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-home text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Studio Confortable</h3>
+                    <p class="text-gray-600 mb-4">Studio moderne et fonctionnel</p>
+                    <a href="#" class="text-orange-600 font-medium hover:text-orange-700">
+                        Explorer <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Chambre -->
+                <div class="category-card bg-white rounded-xl shadow-sm p-6 text-center hover:shadow-md cursor-pointer">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bed text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Chambre</h3>
+                    <p class="text-gray-600 mb-4">Chambres en résidences sécurisées</p>
+                    <a href="#" class="text-orange-600 font-medium hover:text-orange-700">
+                        Explorer <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Tous explorer -->
+                <div
+                    class="category-card bg-orange-600 rounded-xl shadow-sm p-6 text-center hover:shadow-md cursor-pointer">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-compass text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Tous explorer</h3>
+                    <p class="text-white/90 mb-4">Découvrez tous nos biens vérifiés</p>
+                    <a href="#" class="text-white font-medium hover:text-gray-100">
+                        Tout voir <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">Nouveaux biens</h2>
+                    <p class="text-gray-600">
+                        Découvrez les nouveaux biens mis en ligne par nos bailleurs vérifiés
+                    </p>
+                </div>
+                <a href="#" class="text-orange-600 font-medium hover:text-orange-700 hidden md:block">
+                    Voir toutes les annonces <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Properties Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Property Card 1 -->
+                <div class="property-card bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gray-200 relative">
+                        <!-- Badge Nouveau -->
+                        <div
+                            class="absolute top-3 left-3 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                            Nouveau
+                        </div>
+                        <!-- Image counter -->
+                        <div class="absolute bottom-3 right-3 bg-black/60 text-white px-2 py-1 rounded-full text-xs">
+                            1/5
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold text-gray-900">Appartement Moderne</h3>
+                            <span class="text-xl font-bold text-orange-600">60 000 FCFA</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4">Par <span class="font-medium">Jean Bailleur</span> • il y
+                            a 2 heures</p>
+
+                        <div class="flex items-center text-gray-600 text-sm mb-4">
+                            <div class="flex items-center mr-4">
+                                <i class="fas fa-bed mr-2 text-gray-400"></i>
+                                <span>2 chambres</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-bath mr-2 text-gray-400"></i>
+                                <span>2 Salles de bain</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-ruler-combined mr-2 text-gray-400"></i>
+                                <span class="text-sm">45 m²</span>
+                            </div>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 font-medium">4.98</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between text-gray-500 text-sm border-t border-gray-100 pt-4">
+                            <div class="flex items-center">
+                                <i class="far fa-eye mr-1"></i>
+                                <span>24</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="far fa-heart mr-1"></i>
+                                <span>15</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>2k</span>
+                            </div>
+                        </div>
+
+                        <a href="#"
+                            class="block mt-4 text-center bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 rounded-lg transition">
+                            Détails
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Property Card 2 -->
+                <div class="property-card bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gray-300 relative">
+                        <div
+                            class="absolute top-3 left-3 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                            Nouveau
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-black/60 text-white px-2 py-1 rounded-full text-xs">
+                            1/5
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold text-gray-900">Appartement Moderne</h3>
+                            <span class="text-xl font-bold text-orange-600">60 000 FCFA</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4">Par <span class="font-medium">Jean Bailleur</span> • il y
+                            a 2 heures</p>
+
+                        <div class="flex items-center text-gray-600 text-sm mb-4">
+                            <div class="flex items-center mr-4">
+                                <i class="fas fa-bed mr-2 text-gray-400"></i>
+                                <span>2 chambres</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-bath mr-2 text-gray-400"></i>
+                                <span>2 Salles de bain</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-ruler-combined mr-2 text-gray-400"></i>
+                                <span class="text-sm">45 m²</span>
+                            </div>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 font-medium">4.98</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between text-gray-500 text-sm border-t border-gray-100 pt-4">
+                            <div class="flex items-center">
+                                <i class="far fa-eye mr-1"></i>
+                                <span>24</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="far fa-heart mr-1"></i>
+                                <span>15</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>2k</span>
+                            </div>
+                        </div>
+
+                        <a href="#"
+                            class="block mt-4 text-center bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 rounded-lg transition">
+                            Détails
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Property Card 3 -->
+                <div class="property-card bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gray-400 relative">
+                        <div
+                            class="absolute top-3 left-3 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                            Nouveau
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-black/60 text-white px-2 py-1 rounded-full text-xs">
+                            1/5
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold text-gray-900">Appartement Moderne</h3>
+                            <span class="text-xl font-bold text-orange-600">60 000 FCFA</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4">Par <span class="font-medium">Owen Bailleur</span> • il y
+                            a 2 heures</p>
+
+                        <div class="flex items-center text-gray-600 text-sm mb-4">
+                            <div class="flex items-center mr-4">
+                                <i class="fas fa-bed mr-2 text-gray-400"></i>
+                                <span>2 chambres</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-bath mr-2 text-gray-400"></i>
+                                <span>2 Salles de bain</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-ruler-combined mr-2 text-gray-400"></i>
+                                <span class="text-sm">45 m²</span>
+                            </div>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 font-medium">4.98</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between text-gray-500 text-sm border-t border-gray-100 pt-4">
+                            <div class="flex items-center">
+                                <i class="far fa-eye mr-1"></i>
+                                <span>24</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="far fa-heart mr-1"></i>
+                                <span>15</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>2k</span>
+                            </div>
+                        </div>
+
+                        <a href="#"
+                            class="block mt-4 text-center bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 rounded-lg transition">
+                            Détails
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Property Card 4 -->
+                <div class="property-card bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gray-500 relative">
+                        <div
+                            class="absolute top-3 left-3 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                            Nouveau
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-black/60 text-white px-2 py-1 rounded-full text-xs">
+                            1/5
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold text-gray-900">Appartement Moderne</h3>
+                            <span class="text-xl font-bold text-orange-600">60 000 FCFA</span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm mb-4">Par <span class="font-medium">Boris luc Bailleur</span> •
+                            il y a 2 heures</p>
+
+                        <div class="flex items-center text-gray-600 text-sm mb-4">
+                            <div class="flex items-center mr-4">
+                                <i class="fas fa-bed mr-2 text-gray-400"></i>
+                                <span>2 chambres</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-bath mr-2 text-gray-400"></i>
+                                <span>2 Salles de bain</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-ruler-combined mr-2 text-gray-400"></i>
+                                <span class="text-sm">45 m²</span>
+                            </div>
+                            <div class="flex items-center text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 font-medium">4.98</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between text-gray-500 text-sm border-t border-gray-100 pt-4">
+                            <div class="flex items-center">
+                                <i class="far fa-eye mr-1"></i>
+                                <span>24</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="far fa-heart mr-1"></i>
+                                <span>15</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-share-alt mr-1"></i>
+                                <span>2k</span>
+                            </div>
+                        </div>
+
+                        <a href="#"
+                            class="block mt-4 text-center bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 rounded-lg transition">
+                            Détails
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voir plus sur mobile -->
+            <div class="mt-8 text-center md:hidden">
+                <a href="#"
+                    class="inline-block px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition">
+                    Voir toutes les annonces <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-12 flex justify-center">
+                <div class="flex items-center space-x-2">
+                    <button
+                        class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-50">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <button
+                        class="pagination-btn w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-50 active">
+                        1
+                    </button>
+
+                    <button
+                        class="pagination-btn w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-50">
+                        2
+                    </button>
+
+                    <button
+                        class="pagination-btn w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-50">
+                        3
+                    </button>
+
+                    <span class="px-2">...</span>
+
+                    <button
+                        class="pagination-btn w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-50">
+                        7
+                    </button>
+
+                    <button
+                        class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-50">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-4 text-center text-gray-500">
+                <span>156 annonces disponibles</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Pourquoi choisir Home Cameroon ?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Nous révolutionnons l'immobilier locatif au Cameroun avec des solutions innovantes
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Sécurité garantie</h3>
+                    <p class="text-gray-600">
+                        Tous les bailleurs sont vérifiés (KYC) et les annonces sont certifiées pour éviter les arnaques.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-lock text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Paiements sécurisés</h3>
+                    <p class="text-gray-600">
+                        Système d'escrow pour protéger vos paiements. L'argent est débloqué seulement après l'état des
+                        lieux.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-headset text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Support dédié</h3>
+                    <p class="text-gray-600">
+                        Équipe d'assistance disponible pour vous accompagner à chaque étape de votre location.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo & Description -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-home text-white text-lg"></i>
+                        </div>
+                        <span class="text-xl font-bold">Home Cameroon</span>
+                    </div>
+                    <p class="text-gray-400">
+                        La plateforme n°1 pour trouver votre logement idéal au Cameroun en toute sécurité.
+                    </p>
+                </div>
+
+                <!-- Liens rapides -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accueil</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Annonces</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Comment ça marche</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">À propos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Catégories -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Catégories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Appartements</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Studios</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Chambres</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Villas</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Maisons</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-orange-600 mr-3"></i>
+                            <span class="text-gray-400">+237 6XX XX XX XX</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-orange-600 mr-3"></i>
+                            <span class="text-gray-400">contact@homecameroon.cm</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-orange-600 mr-3"></i>
+                            <span class="text-gray-400">Yaoundé, Cameroun</span>
+                        </li>
+                    </ul>
+
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-600 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2024 Home Cameroon. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile menu toggle script -->
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+
+            // Change icon
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Property card hover effect
+        document.querySelectorAll('.property-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+            });
+        });
+    </script>
+</body>
+
+</html>

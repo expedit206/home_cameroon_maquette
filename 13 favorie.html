@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mes Favoris - Home Cameroun</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#FAF9F5] min-h-screen font-sans antialiased">
+
+  <!-- HEADER selon l'image -->
+  <header class="sticky top-0 z-50 bg-white shadow-md">
+    <!-- Barre du haut (Inscrire une location et © HomeCameroon) -->
+    <div class="bg-[#E54801] text-white py-2">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center text-sm">
+          <div>
+            <a href="#" class="hover:text-white/90 transition duration-200">
+              <i class="fa-solid fa-plus mr-1"></i> Inscrire une location
+            </a>
+          </div>
+          <div>
+            <span>© HomeCameroon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Navigation principale -->
+    <div class="bg-white py-4">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <!-- Logo avec image -->
+          <div class="flex items-center space-x-3">
+            <!-- Logo image - Remplacez src par votre logo -->
+            <div class="w-12 h-12 rounded-lg flex items-center justify-center">
+              <img src="/annonce/logo.png" alt="" class="text-white text-xl">
+            </div>
+            <div>
+              <div class="text-2xl font-bold">
+                <span class="text-[#1B0B38]">Home</span>
+                <span class="text-[#E54801]">Cameroon</span>
+              </div>
+              <div class="text-xs text-[#913327] mt-1">Trouvez votre logement idéal</div>
+            </div>
+          </div>
+          
+          <!-- Menu burger pour mobile -->
+          <button class="lg:hidden p-2 rounded-md text-[#1B0B38]" id="burgerMenu">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+          
+          <!-- Navigation desktop -->
+          <nav class="hidden lg:flex items-center space-x-8" id="navMenu">
+            <a href="#" class="text-[#1B0B38] font-medium hover:text-[#E54801] transition duration-200">
+              Accueil
+            </a>
+            <a href="#" class="text-[#1B0B38] font-medium hover:text-[#E54801] transition duration-200">
+              Annonces
+            </a>
+            <a href="#" class="text-[#1B0B38] font-medium hover:text-[#E54801] transition duration-200">
+              À propos
+            </a>
+            <a href="#" class="text-[#1B0B38] font-medium hover:text-[#E54801] transition duration-200">
+              Nos partenaires
+            </a>
+            <a href="#" class="w-10 h-10 bg-[#E54801] text-white rounded-full flex items-center justify-center hover:bg-[#913327] transition duration-200">
+              <i class="fa-solid fa-user"></i>
+            </a>
+          </nav>
+        </div>
+        
+        <!-- Navigation mobile -->
+        <div class="lg:hidden mt-4 hidden" id="mobileMenu">
+          <div class="flex flex-col space-y-4 bg-white p-4 rounded-lg shadow-lg">
+            <a href="#" class="text-[#1B0B38] font-medium hover:text-[#E54801] transition duration-200 py-2">
+              Accueil
+            </a>
+            <a href="#" class="text-[#1B0B38] font-medium hover:text-[#E54801] transition duration-200 py-2">
+              Annonces
+            </a>
+            <a href="#" class="text-[#1B0B38] font-medium hover:text-[#E54801] transition duration-200 py-2">
+              À propos
+            </a>
+            <a href="#" class="text-[#1B0B38] font-medium hover:text-[#E54801] transition duration-200 py-2">
+              Nos partenaires
+            </a>
+            <a href="#" class="flex items-center space-x-2 text-[#1B0B38] font-medium hover:text-[#E54801] transition duration-200 py-2">
+              <div class="w-8 h-8 bg-[#E54801] text-white rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-user text-sm"></i>
+              </div>
+              <span>Mon profil</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- En-tête de la page Favoris -->
+    <div class="bg-white rounded-2xl p-6 sm:p-8 mb-8 shadow-md border border-gray-100">
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+        <div>
+          <h1 class="text-3xl font-bold text-[#1B0B38] mb-3">Mes Annonces Favorites</h1>
+          <p class="text-[#913327] text-lg font-medium">Retrouvez toutes les annonces de location que vous avez sauvegardées</p>
+        </div>
+        
+        <!-- Statistiques UNIQUEMENT location -->
+        <div class="bg-[#FAF9F5] rounded-xl p-5 min-w-[280px] border border-gray-200">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-[#E54801]">4</div>
+              <div class="text-sm text-[#1B0B38] font-medium">Total</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-[#913327]">4</div>
+              <div class="text-sm text-[#1B0B38] font-medium">À louer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTRES ET TRI - UNIQUEMENT LOCATION -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+      <div class="flex flex-wrap gap-2">
+        <button class="px-5 py-2.5 bg-[#E54801] text-white rounded-full font-medium shadow-md hover:bg-[#913327] transition duration-200">
+          Tous les favoris
+        </button>
+        <button class="px-5 py-2.5 bg-white rounded-full shadow-md text-[#1B0B38] font-medium border border-gray-200 hover:border-[#E54801] hover:text-[#E54801] transition duration-200">
+          Appartements
+        </button>
+        <button class="px-5 py-2.5 bg-white rounded-full shadow-md text-[#1B0B38] font-medium border border-gray-200 hover:border-[#E54801] hover:text-[#E54801] transition duration-200">
+          Maisons
+        </button>
+        <button class="px-5 py-2.5 bg-white rounded-full shadow-md text-[#1B0B38] font-medium border border-gray-200 hover:border-[#E54801] hover:text-[#E54801] transition duration-200">
+          Villas
+        </button>
+        <button class="px-5 py-2.5 bg-white rounded-full shadow-md text-[#1B0B38] font-medium border border-gray-200 hover:border-[#E54801] hover:text-[#E54801] transition duration-200">
+          Récemment ajoutés
+        </button>
+      </div>
+      
+      <div class="flex items-center gap-3 text-[#1B0B38]">
+        <i class="fa-solid fa-arrow-down-wide-short text-[#E54801]"></i>
+        <span class="font-medium">Trier par :</span>
+        <select class="bg-white px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#E54801]/30 focus:border-[#E54801] font-medium text-[#1B0B38]">
+          <option>Plus récents</option>
+          <option>Prix croissant</option>
+          <option>Prix décroissant</option>
+          <option>Surface</option>
+          <option>Popularité</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- CARTES FAVORIS - UNIQUEMENT LOCATION -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Carte 1 -->
+      <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#E54801]/30">
+        <div class="relative h-56">
+          <img 
+            src="/img/11.jpg" 
+            alt="Villa moderne Bonapriso"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1B0B38]/70 via-transparent to-transparent opacity-70"></div>
+
+          <!-- Badges - UNIQUEMENT À LOUER -->
+          <div class="absolute top-4 left-4 flex gap-2">
+            <span class="px-3 py-1.5 bg-[#E54801] text-white text-xs font-bold rounded-full shadow-md">
+              À louer
+            </span>
+          </div>
+
+          <!-- Bouton favori -->
+          <button class="absolute top-4 right-4 w-10 h-10 bg-[#E54801] rounded-full flex items-center justify-center shadow-lg hover:bg-[#913327] hover:shadow-xl transition-all duration-200 active:scale-95">
+            <i class="fa-solid fa-heart text-white text-lg"></i>
+          </button>
+          
+          <!-- Prix -->
+          <div class="absolute bottom-4 left-4">
+            <div class="text-2xl font-bold text-white">90 000 <span class="text-lg font-medium">FCFA/mois</span></div>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <div class="flex items-center gap-2 text-xs text-[#E54801] font-semibold mb-2">
+            <i class="fa-solid fa-location-dot"></i>
+            Bonapriso, Douala
+          </div>
+          
+          <h3 class="font-bold text-lg text-[#1B0B38] mb-3 line-clamp-2">
+            Villa F5 contemporaine avec piscine - Bonapriso
+          </h3>
+          
+          <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+            Magnifique villa moderne avec piscine, jardin, garage double et vue dégagée. Idéale pour famille.
+          </p>
+          
+          <div class="flex items-center justify-between text-sm text-[#1B0B38] font-medium border-t border-gray-100 pt-4">
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-bed text-[#913327]"></i>
+              <span>5 chambres</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-bath text-[#913327]"></i>
+              <span>4 salles de bain</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-maximize text-[#913327]"></i>
+              <span>420m²</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <i class="fa-solid fa-clock"></i>
+              <span>Ajouté il y a 2 jours</span>
+            </div>
+            <button class="text-sm font-semibold text-[#E54801] hover:text-[#913327] transition duration-200">
+              Voir détails <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte 2 -->
+      <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#E54801]/30">
+        <div class="relative h-56">
+          <img 
+            src="/img/3.jpg" 
+            alt="Appartement Yaoundé"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1B0B38]/70 via-transparent to-transparent opacity-70"></div>
+
+          <div class="absolute top-4 left-4 flex gap-2">
+            <span class="px-3 py-1.5 bg-[#E54801] text-white text-xs font-bold rounded-full shadow-md">
+              À louer
+            </span>
+          </div>
+
+          <button class="absolute top-4 right-4 w-10 h-10 bg-[#E54801] rounded-full flex items-center justify-center shadow-lg hover:bg-[#913327] hover:shadow-xl transition-all duration-200 active:scale-95">
+            <i class="fa-solid fa-heart text-white text-lg"></i>
+          </button>
+          
+          <div class="absolute bottom-4 left-4">
+            <div class="text-2xl font-bold text-white">80 000 <span class="text-lg font-medium">FCFA/mois</span></div>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <div class="flex items-center gap-2 text-xs text-[#E54801] font-semibold mb-2">
+            <i class="fa-solid fa-location-dot"></i>
+            Bastos, Yaoundé
+          </div>
+          
+          <h3 class="font-bold text-lg text-[#1B0B38] mb-3 line-clamp-2">
+            Appartement standing F4 - Bastos
+          </h3>
+          
+          <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+            Appartement haut standing avec vue panoramique, proche des ambassades et centres commerciaux.
+          </p>
+          
+          <div class="flex items-center justify-between text-sm text-[#1B0B38] font-medium border-t border-gray-100 pt-4">
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-bed text-[#913327]"></i>
+              <span>4 chambres</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-bath text-[#913327]"></i>
+              <span>3 salles de bain</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-maximize text-[#913327]"></i>
+              <span>180m²</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <i class="fa-solid fa-clock"></i>
+              <span>Ajouté il y a 1 semaine</span>
+            </div>
+            <button class="text-sm font-semibold text-[#E54801] hover:text-[#913327] transition duration-200">
+              Voir détails <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte 3 -->
+      <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#E54801]/30">
+        <div class="relative h-56">
+          <img 
+            src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80" 
+            alt="Maison familiale Bafoussam"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1B0B38]/70 via-transparent to-transparent opacity-70"></div>
+
+          <div class="absolute top-4 left-4 flex gap-2">
+            <span class="px-3 py-1.5 bg-[#E54801] text-white text-xs font-bold rounded-full shadow-md">
+              À louer
+            </span>
+          </div>
+
+          <button class="absolute top-4 right-4 w-10 h-10 bg-[#E54801] rounded-full flex items-center justify-center shadow-lg hover:bg-[#913327] hover:shadow-xl transition-all duration-200 active:scale-95">
+            <i class="fa-solid fa-heart text-white text-lg"></i>
+          </button>
+          
+          <div class="absolute bottom-4 left-4">
+            <div class="text-2xl font-bold text-white">45 000 <span class="text-lg font-medium">FCFA/mois</span></div>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <div class="flex items-center gap-2 text-xs text-[#E54801] font-semibold mb-2">
+            <i class="fa-solid fa-location-dot"></i>
+            Bafoussam, Ouest
+          </div>
+          
+          <h3 class="font-bold text-lg text-[#1B0B38] mb-3 line-clamp-2">
+            Maison familiale avec jardin - Bafoussam
+          </h3>
+          
+          <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+            Maison spacieuse avec grand jardin, garage et dépendances. Quartier calme et résidentiel.
+          </p>
+          
+          <div class="flex items-center justify-between text-sm text-[#1B0B38] font-medium border-t border-gray-100 pt-4">
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-bed text-[#913327]"></i>
+              <span>3 chambres</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-bath text-[#913327]"></i>
+              <span>2 salles de bain</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-maximize text-[#913327]"></i>
+              <span>250m²</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <i class="fa-solid fa-clock"></i>
+              <span>Ajouté il y a 3 semaines</span>
+            </div>
+            <button class="text-sm font-semibold text-[#E54801] hover:text-[#913327] transition duration-200">
+              Voir détails <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte 4 -->
+      <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#E54801]/30">
+        <div class="relative h-56">
+          <img 
+            src="/img/12.jpg" 
+            alt="Studio Douala"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1B0B38]/70 via-transparent to-transparent opacity-70"></div>
+
+          <div class="absolute top-4 left-4 flex gap-2">
+            <span class="px-3 py-1.5 bg-[#E54801] text-white text-xs font-bold rounded-full shadow-md">
+              À louer
+            </span>
+            <span class="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-[#E54801] text-xs font-bold rounded-full shadow-sm">
+              Studio
+            </span>
+          </div>
+
+          <button class="absolute top-4 right-4 w-10 h-10 bg-[#E54801] rounded-full flex items-center justify-center shadow-lg hover:bg-[#913327] hover:shadow-xl transition-all duration-200 active:scale-95">
+            <i class="fa-solid fa-heart text-white text-lg"></i>
+          </button>
+          
+          <div class="absolute bottom-4 left-4">
+            <div class="text-2xl font-bold text-white">50 000 <span class="text-lg font-medium">FCFA/mois</span></div>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <div class="flex items-center gap-2 text-xs text-[#E54801] font-semibold mb-2">
+            <i class="fa-solid fa-location-dot"></i>
+            Akwa, Douala
+          </div>
+          
+          <h3 class="font-bold text-lg text-[#1B0B38] mb-3 line-clamp-2">
+            Studio moderne - Akwa
+          </h3>
+          
+          <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+            Studio moderne, cuisine. Idéal étudiant ou jeune actif.
+          </p>
+          
+          <div class="flex items-center justify-between text-sm text-[#1B0B38] font-medium border-t border-gray-100 pt-4">
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-bed text-[#913327]"></i>
+              <span>1 chambre</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-bath text-[#913327]"></i>
+              <span>1 salle de bain</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-maximize text-[#913327]"></i>
+              <span>45m²</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <i class="fa-solid fa-clock"></i>
+              <span>Ajouté aujourd'hui</span>
+            </div>
+            <button class="text-sm font-semibold text-[#E54801] hover:text-[#913327] transition duration-200">
+              Voir détails <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bouton action -->
+    <div class="mt-10 mb-16 flex justify-center">
+      <button class="px-8 py-4 bg-[#E54801] text-white font-bold rounded-xl shadow-lg hover:bg-[#913327] hover:shadow-xl transition-all duration-200 active:scale-95 flex items-center gap-3">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Explorer plus d'annonces de location
+      </button>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#1B0B38] text-white pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        
+        <!-- Colonne 1: Logo et description -->
+        <div>
+          <div class="text-2xl font-bold text-[#E54801] mb-4">Home Cameroon</div>
+          <p class="text-gray-300 text-sm leading-relaxed mb-6">
+            La plateforme n°1 pour trouver votre logement idéal au Cameroun. Studios, chambres, appartements, maisons et villas modernes à Yaoundé, Douala et partout au pays.
+          </p>
+        </div>
+        
+        <!-- Colonne 2: Liens rapides -->
+        <div>
+          <h3 class="text-lg font-bold text-[#E54801] mb-6">Liens Rapides</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-300 hover:text-[#E54801] transition duration-200 flex items-center gap-2"> Accueil</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-[#E54801] transition duration-200 flex items-center gap-2"> Catégories</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-[#E54801] transition duration-200 flex items-center gap-2"> Toutes les annonces</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-[#E54801] transition duration-200 flex items-center gap-2"> Publier une annonce</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-[#E54801] transition duration-200 flex items-center gap-2"> À propos</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-[#E54801] transition duration-200 flex items-center gap-2"> Contact</a></li>
+          </ul>
+        </div>
+        
+        <!-- Colonne 3: Contact -->
+        <div>
+          <h3 class="text-lg font-bold text-[#E54801] mb-6">Contact</h3>
+          <div class="space-y-4 text-gray-300">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-phone text-[#913327] mt-1"></i>
+              <span>+237 6 99 99 99 99</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-envelope text-[#913327] mt-1"></i>
+              <span>contact@homecameroun.cm</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-location-dot text-[#913327] mt-1"></i>
+              <span>Yaoundé & Douala, Cameroun</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Colonne 4: Réseaux sociaux -->
+        <div>
+          <h3 class="text-lg font-bold text-[#E54801] mb-6">Suivez-nous</h3>
+          <div class="flex gap-3 mb-8">
+            <a href="#" class="w-10 h-10 bg-[#2a1157] rounded-full flex items-center justify-center text-white hover:bg-[#E54801] transition duration-200">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-[#2a1157] rounded-full flex items-center justify-center text-white hover:bg-[#E54801] transition duration-200">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-[#2a1157] rounded-full flex items-center justify-center text-white hover:bg-[#E54801] transition duration-200">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-[#2a1157] rounded-full flex items-center justify-center text-white hover:bg-[#E54801] transition duration-200">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+          <div class="text-sm text-gray-400">
+            Téléchargez notre app
+            <div class="flex gap-3 mt-3">
+              <button class="px-4 py-2 bg-[#2a1157] rounded-lg hover:bg-[#E54801] transition duration-200">
+                <i class="fab fa-google-play mr-2"></i> Play Store
+              </button>
+              <button class="px-4 py-2 bg-[#2a1157] rounded-lg hover:bg-[#E54801] transition duration-200">
+                <i class="fab fa-apple mr-2"></i> App Store
+              </button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Ligne de séparation -->
+      <div class="border-t border-gray-700/50 my-10"></div>
+      
+      <!-- Bas du footer -->
+      <div class="text-center">
+        <div class="text-gray-400 text-sm mb-4">
+          © 2026 Home Cameroon - Tous droits réservés. <span class="ml-2 text-lg">🇨🇲</span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 text-gray-400 text-sm">
+          <a href="#" class="hover:text-white transition duration-200">Mentions légales</a>
+          <a href="#" class="hover:text-white transition duration-200">Politique de confidentialité</a>
+          <a href="#" class="hover:text-white transition duration-200">Conditions d'utilisation</a>
+          <a href="#" class="hover:text-white transition duration-200">FAQ</a>
+          <a href="#" class="hover:text-white transition duration-200">Aide</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Script pour le menu burger mobile
+    const burgerMenu = document.getElementById('burgerMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    burgerMenu.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Fermer le menu en cliquant en dehors sur mobile
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !burgerMenu.contains(e.target) && window.innerWidth < 1024) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+    
+    // Fermer le menu quand on redimensionne l'écran
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+  </script>
+
+</body>
+</html>

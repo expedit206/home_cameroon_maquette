@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Espace Locataire - Home Cameroon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hmc-orange': '#E54801',
+                        'hmc-red': '#913327',
+                        'hmc-dark': '#1B0B38',
+                        'hmc-light': '#FAF9F5'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Styles personnalisés */
+        .sidebar-active {
+            background-color: rgba(235, 72, 1, 0.1);
+            color: #E54801;
+            border-left: 4px solid #E54801;
+        }
+        
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background-color: rgba(37, 99, 235, 0.1);
+            color: #1d4ed8;
+        }
+        
+        .status-pending {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #d97706;
+        }
+        
+        .status-completed {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+        
+        .status-warning {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+        }
+        
+        .card-gradient {
+            background: linear-gradient(135deg, #1B0B38 0%, #2d1f52 100%);
+            color: white;
+        }
+        
+        .card-gradient-orange {
+            background: linear-gradient(135deg, #E54801 0%, #913327 100%);
+            color: white;
+        }
+        
+        .notification-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #E54801;
+            border-radius: 50%;
+            position: absolute;
+            top: -2px;
+            right: -2px;
+        }
+        
+        /* Animation pour les cartes */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-slideInUp {
+            animation: slideInUp 0.3s ease-out;
+        }
+        
+        /* Améliorations pour mobile */
+        @media (max-width: 768px) {
+            .mobile-section {
+                margin-bottom: 1.5rem;
+                border-radius: 12px;
+                overflow: hidden;
+            }
+            
+            .mobile-card {
+                border-radius: 12px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .mobile-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 0.75rem;
+            }
+            
+            .mobile-text-lg {
+                font-size: 1.25rem;
+            }
+            
+            .mobile-text-xl {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Personnalisation de la scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E54801;
+            border-radius: 10px;
+        }
+        
+        /* Ombre portée douce */
+        .soft-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Séparation visuelle */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #E5E7EB, transparent);
+            margin: 1.5rem 0;
+        }
+        
+        /* Badge pour les chiffres importants */
+        .number-badge {
+            background: linear-gradient(135deg, #E54801, #913327);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body class="bg-hmc-light font-sans text-gray-800">
+    <!-- Layout principal avec sidebar fixe -->
+
+       <nav class="w-full bg-[#FFFDF9] border-b border-gray-200 fixed top-0 ">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+    
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <img src="logo.png" alt="Home Cameroon Logo" class="h-8 w-auto">
+                    <span class="font-semibold text-sm text-gray-900">
+                        Home   <span class="text-orange-600">
+
+                        Cameroon
+                    </span>
+                    </span>
+                </div>
+    
+                <!-- Desktop menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#" class="text-sm font-medium text-orange-600">
+                        Accueil
+                    </a>
+                    <a href="#" class="text-sm font-medium text-gray-500 hover:text-orange-600">
+                        Annonces
+                    </a>
+                    <a href="#" class="text-sm font-medium text-gray-500 hover:text-orange-600">
+                        À propos
+                    </a>
+                    <a href="#" class="text-sm font-medium text-gray-500 hover:text-orange-600">
+                        Contact
+                    </a>
+                </div>
+    
+                <!-- Desktop actions -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+                        <i class="fa-solid fa-lock text-sm"></i>
+                        Se connecter
+                    </a>
+    
+                    <a href="#"
+                        class="bg-indigo-900 text-white text-sm font-semibold px-5 py-2 rounded-full hover:bg-indigo-800 transition">
+                        Inscrire une location
+                    </a>
+                </div>
+    
+                <!-- Mobile burger -->
+                <div class="md:hidden relative">
+                    <input type="checkbox" id="" class="hidden peer">
+    
+                    <label for="" class="cursor-pointer">
+                        <i class="fa-solid fa-bars text-xl text-gray-800"></i>
+                    </label>
+    
+                    <!-- Mobile menu -->
+                    <div class="absolute left-0 top-16 w-full bg-white border-t border-gray-200
+                               hidden peer-checked:block shadow-md">
+    
+                        <div class="flex flex-col px-6 py-4 gap-4">
+                            <a href="#" class="text-sm font-medium text-orange-600">
+                                Accueil
+                            </a>
+                            <a href="#" class="text-sm font-medium text-gray-600 hover:text-orange-600">
+                                Annonces
+                            </a>
+                            <a href="#" class="text-sm font-medium text-gray-600 hover:text-orange-600">
+                                À propos
+                            </a>
+                            <a href="#" class="text-sm font-medium text-gray-600 hover:text-orange-600">
+                                Contact
+                            </a>
+    
+                            <hr class="my-2">
+    
+                            <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700">
+                                <i class="fa-solid fa-lock text-sm"></i>
+                                Se connecter
+                            </a>
+    
+                            <a href="#"
+                                class="bg-indigo-900 text-white text-sm font-semibold text-center py-2 rounded-full">
+                                Inscrire une location
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </nav>
+
+     <!-- Contenu scrollable -->
+        <div class="p-4 sm:p-6 lg:p-8 mt-16 ">
+            <!-- Section: Bienvenue et cartes stats -->
+            <section class="mb-8">
+                <!-- Message de bienvenue mobile -->
+                <div class="lg:hidden mb-6">
+                    <h1 class="text-xl font-bold text-gray-900 mb-1">Bonjour, Jean 👋</h1>
+                    <p class="text-gray-600 text-sm">Voici votre tableau de bord locataire</p>
+                </div>
+                
+                <!-- Cartes statistiques principales (grid responsive) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <!-- Carte 1: Logement actuel -->
+                    <div class="bg-gradient-to-br from-hmc-orange to-hmc-red rounded-xl p-4 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <p class="text-xs text-white/90 font-medium">Logement actuel</p>
+                                <h3 class="text-base font-bold mt-1 text-white">Bastos</h3>
+                            </div>
+                            <i class="fas fa-home text-lg text-white/80"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-white/80">Loyer mensuel</p>
+                                <p class="text-lg font-bold text-white">150 000 FCFA</p>
+                            </div>
+                            <span class="bg-white/20 text-white text-xs px-2 py-1 rounded-full">
+                                Actif
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Carte 2: Prochain paiement -->
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <p class="text-xs text-gray-500 font-medium">Prochain paiement</p>
+                                <h3 class="text-base font-bold text-gray-900 mt-1">05 Mars</h3>
+                            </div>
+                            <i class="fas fa-calendar-alt text-lg text-hmc-orange"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-500">Montant</p>
+                                <p class="text-lg font-bold text-gray-900">150 000 FCFA</p>
+                            </div>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">
+                                À venir
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Carte 3: Cautions -->
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <p class="text-xs text-gray-500 font-medium">Cautions HMC</p>
+                                <h3 class="text-base font-bold text-gray-900 mt-1">300 000 FCFA</h3>
+                            </div>
+                            <i class="fas fa-shield-alt text-lg text-green-500"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-500">Sécurisée</p>
+                                <p class="text-base font-medium text-gray-900">Escrow</p>
+                            </div>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
+                                Protégée
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Carte 4: Score locatif -->
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <p class="text-xs text-gray-500 font-medium">Score HMC</p>
+                                <h3 class="text-base font-bold text-gray-900 mt-1">8.5/10</h3>
+                            </div>
+                            <i class="fas fa-chart-line text-lg text-hmc-red"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-500">Classement</p>
+                                <p class="text-base font-medium text-gray-900">Excellent</p>
+                            </div>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
+                                Top 15%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Logement actuel -->
+            <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-5 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold text-gray-900">Mon logement actuel</h2>
+                    <a href="#" class="text-hmc-orange hover:text-hmc-red font-medium text-sm flex items-center">
+                        <span>Détails</span>
+                        <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4">
+                    <!-- Photo -->
+                    <div class="md:w-1/3">
+                        <div class="rounded-lg overflow-hidden h-48 bg-gradient-to-br from-gray-100 to-gray-200">
+                            <img src="./img/img2.jpeg" alt="Appartement Bastos" class="w-full h-full object-cover">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mt-3">
+                            <div class="text-center p-2 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-500">Surface</p>
+                                <p class="font-bold text-gray-900">85 m²</p>
+                            </div>
+                            <div class="text-center p-2 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-500">Pièces</p>
+                                <p class="font-bold text-gray-900">3</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Détails -->
+                    <div class="md:w-2/3">
+                        <h3 class="font-bold text-gray-900 mb-1">Appartement moderne à Bastos</h3>
+                        <p class="text-gray-600 text-sm mb-3 flex items-center">
+                            <i class="fas fa-map-marker-alt text-xs text-gray-400 mr-1"></i>
+                            Bastos, Yaoundé • Quartier résidentiel
+                        </p>
+                        
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Début de bail:</span>
+                                <span class="font-medium">15/01/2023</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Fin de bail:</span>
+                                <span class="font-medium">14/01/2025</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Propriétaire:</span>
+                                <span class="font-medium">M. Ngoa Ekele</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <a href="#" class="flex-1 bg-hmc-orange text-white py-3 rounded-lg text-center hover:bg-hmc-red transition text-sm font-medium flex items-center justify-center">
+                                <i class="fas fa-file-contract mr-2"></i>
+                                Voir contrat
+                            </a>
+                            <a href="#" class="flex-1 border border-hmc-orange text-hmc-orange py-3 rounded-lg text-center hover:bg-hmc-orange hover:text-white transition text-sm font-medium flex items-center justify-center">
+                                <i class="fas fa-comment mr-2"></i>
+                                Contacter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Paiements et interventions -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <!-- Paiements -->
+                <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-5">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-bold text-gray-900">Calendrier des paiements</h2>
+                        <a href="#" class="text-hmc-orange hover:text-hmc-red font-medium text-sm flex items-center">
+                            <span>Historique</span>
+                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Graphique simplifié -->
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-medium text-gray-900">2024 - 2/12 payés</h3>
+                            <span class="text-xs text-gray-500">16%</span>
+                        </div>
+                        <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-hmc-orange to-hmc-red" style="width: 16.67%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 mt-1 px-1">
+                            <span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span>
+                            <span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Liste des paiements -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-hmc-orange transition">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 text-sm">Janvier 2024</h4>
+                                    <p class="text-xs text-gray-500">Payé le 05/01</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-gray-900">150 000 FCFA</p>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Payé</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-hmc-orange transition">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 text-sm">Février 2024</h4>
+                                    <p class="text-xs text-gray-500">Payé le 05/02</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-gray-900">150 000 FCFA</p>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Payé</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-hmc-orange transition bg-amber-50">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-clock text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 text-sm">Mars 2024</h4>
+                                    <p class="text-xs text-gray-500">Échéance: 05/03</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-gray-900">150 000 FCFA</p>
+                                <button class="bg-hmc-orange text-white px-3 py-1 rounded-lg text-xs hover:bg-hmc-red transition font-medium">
+                                    Payer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interventions -->
+                <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-5">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-bold text-gray-900">Mes interventions</h2>
+                        <a href="#" class="text-hmc-orange hover:text-hmc-red font-medium text-sm flex items-center">
+                            <span>Toutes</span>
+                            <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="p-3 border border-gray-200 rounded-lg hover:border-hmc-orange transition">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 text-sm">Fuite d'eau cuisine</h4>
+                                    <p class="text-xs text-gray-500">15/02/2024</p>
+                                </div>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">En cours</span>
+                            </div>
+                            <p class="text-gray-600 text-xs mb-2">Fuite sous l'évier. Plombier assigné.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-gray-700">Plombier assigné</span>
+                                <a href="#" class="text-hmc-orange text-xs font-medium">Suivre</a>
+                            </div>
+                        </div>
+                        
+                        <div class="p-3 border border-gray-200 rounded-lg hover:border-hmc-orange transition">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 text-sm">Climatisation</h4>
+                                    <p class="text-xs text-gray-500">10/02/2024</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Résolu</span>
+                            </div>
+                            <p class="text-gray-600 text-xs mb-2">Chambre principale. Réparé.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-gray-700">Technicien: Martin N.</span>
+                                <div class="flex items-center text-xs">
+                                    <i class="fas fa-star text-amber-400 mr-1"></i>
+                                    <span class="text-gray-700">4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="block w-full border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-hmc-orange hover:bg-gray-50 transition">
+                            <i class="fas fa-plus text-gray-400 text-lg mb-2"></i>
+                            <p class="text-gray-700 text-sm font-medium">Nouvelle demande</p>
+                            <p class="text-xs text-gray-500">Cliquez pour créer</p>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Section: Actions rapides -->
+            <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-5 mb-6">
+                <h2 class="text-lg font-bold text-gray-900 mb-4">Actions rapides</h2>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <a href="#" class="flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:border-hmc-orange hover:bg-gray-50 transition">
+                        <div class="w-12 h-12 bg-gradient-to-br from-hmc-orange/10 to-hmc-red/10 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-money-bill-wave text-hmc-orange text-lg"></i>
+                        </div>
+                        <span class="font-medium text-center text-sm">Payer loyer</span>
+                    </a>
+                    
+                    <a href="#" class="flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:border-hmc-orange hover:bg-gray-50 transition">
+                        <div class="w-12 h-12 bg-gradient-to-br from-hmc-orange/10 to-hmc-red/10 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-file-invoice text-hmc-orange text-lg"></i>
+                        </div>
+                        <span class="font-medium text-center text-sm">Quittances</span>
+                    </a>
+                    
+                    <a href="#" class="flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:border-hmc-orange hover:bg-gray-50 transition">
+                        <div class="w-12 h-12 bg-gradient-to-br from-hmc-orange/10 to-hmc-red/10 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-tools text-hmc-orange text-lg"></i>
+                        </div>
+                        <span class="font-medium text-center text-sm">Réparations</span>
+                    </a>
+                    
+                    <a href="#" class="flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:border-hmc-orange hover:bg-gray-50 transition">
+                        <div class="w-12 h-12 bg-gradient-to-br from-hmc-orange/10 to-hmc-red/10 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-search text-hmc-orange text-lg"></i>
+                        </div>
+                        <span class="font-medium text-center text-sm">Rechercher</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Section: Notifications -->
+            <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-5 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold text-gray-900">Notifications récentes</h2>
+                    <a href="#" class="text-sm text-gray-500 hover:text-hmc-orange">
+                        Tout marquer
+                    </a>
+                </div>
+                
+                <div class="space-y-3">
+                    <div class="p-3 bg-blue-50 border border-blue-100 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                <i class="fas fa-info-circle text-blue-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">Paiement confirmé</p>
+                                <p class="text-xs text-gray-600">Février payé et confirmé</p>
+                                <p class="text-xs text-gray-500 mt-1">Il y a 2 jours</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-3 bg-amber-50 border border-amber-100 rounded-lg">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                <i class="fas fa-calendar-exclamation text-amber-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">Échéance approche</p>
+                                <p class="text-xs text-gray-600">Prochain: 05/03/2024</p>
+                                <p class="text-xs text-gray-500 mt-1">Il y a 5 jours</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="block text-center mt-2 text-hmc-orange hover:text-hmc-red font-medium text-sm">
+                        Voir toutes les notifications
+                    </a>
+                </div>
+            </section>
+
+            <!-- Section: Documents -->
+            <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-5 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold text-gray-900">Documents importants</h2>
+                    <a href="#" class="text-hmc-orange hover:text-hmc-red font-medium text-sm flex items-center">
+                        <span>Tous</span>
+                        <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <a href="#" class="border border-gray-200 rounded-lg p-3 hover:border-hmc-orange hover:bg-gray-50 transition">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-2">
+                                <i class="fas fa-file-contract text-red-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900 text-sm">Contrat</h4>
+                                <p class="text-xs text-gray-500">15/01/2023</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-600">PDF • 2.3 MB</span>
+                            <i class="fas fa-download text-hmc-orange text-sm"></i>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="border border-gray-200 rounded-lg p-3 hover:border-hmc-orange hover:bg-gray-50 transition">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-2">
+                                <i class="fas fa-receipt text-green-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900 text-sm">Quittance</h4>
+                                <p class="text-xs text-gray-500">05/02/2024</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-600">PDF • 1.1 MB</span>
+                            <i class="fas fa-download text-hmc-orange text-sm"></i>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="border border-gray-200 rounded-lg p-3 hover:border-hmc-orange hover:bg-gray-50 transition">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-2">
+                                <i class="fas fa-file-signature text-blue-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900 text-sm">État des lieux</h4>
+                                <p class="text-xs text-gray-500">10/01/2023</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-600">PDF • 3.2 MB</span>
+                            <i class="fas fa-download text-hmc-orange text-sm"></i>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="border border-gray-200 rounded-lg p-3 hover:border-hmc-orange hover:bg-gray-50 transition">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-2">
+                                <i class="fas fa-shield-alt text-purple-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900 text-sm">Caution</h4>
+                                <p class="text-xs text-gray-500">Valide 2025</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-600">PDF • 1.8 MB</span>
+                            <i class="fas fa-download text-hmc-orange text-sm"></i>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Section: Score locatif -->
+            <section class="bg-gradient-to-br from-hmc-orange to-hmc-red rounded-xl shadow-sm p-4 sm:p-5 mb-6">
+                <h2 class="text-lg font-bold text-white mb-4">Mon score locatif HMC</h2>
+                
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-3xl md:text-4xl font-bold text-white">8.5<span class="text-xl">/10</span></p>
+                        <p class="text-white/90">Excellent locataire</p>
+                    </div>
+                    <div class="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-white/30 flex items-center justify-center">
+                        <span class="text-xl md:text-2xl font-bold text-white">85%</span>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-white/90">Paiements ponctuels</span>
+                            <span class="text-white font-medium">100%</span>
+                        </div>
+                        <div class="h-2 bg-white/30 rounded-full">
+                            <div class="h-full bg-green-400 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-white/90">Respect du bien</span>
+                            <span class="text-white font-medium">90%</span>
+                        </div>
+                        <div class="h-2 bg-white/30 rounded-full">
+                            <div class="h-full bg-green-400 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-white/90">Relation propriétaire</span>
+                            <span class="text-white font-medium">85%</span>
+                        </div>
+                        <div class="h-2 bg-white/30 rounded-full">
+                            <div class="h-full bg-green-400 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-sm text-white/80 mt-4">
+                    Votre excellent score vous donne accès à des avantages exclusifs.
+                </p>
+            </section>
+        </div>
+
+    <!-- Espace pour le menu mobile (padding-bottom) -->
+    <div class="lg:hidden pb-16"></div>
+<!-- Footer -->
+<footer class="bg-[#1B0B38] text-white mt-12">
+    <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Colonne 1 -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Home Cameroun</h3>
+                <p class="text-gray-300 leading-relaxed">
+                    La plateforme n°1 pour trouver votre logement idéal au Cameroun. Studios, chambres,
+                    appartements, maisons et villas modernes à Yaoundé, Douala et partout au pays.
+                </p>
+            </div>
+
+            <!-- Colonne 2 -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                <div class="flex flex-col space-y-2">
+                    <a href="#" class="text-gray-300 hover:text-white transition">Accueil</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">Catégories</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">Toutes les annonces</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">Publier une annonce</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">À propos</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">Contact</a>
+                </div>
+            </div>
+
+            <!-- Colonne 3 -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <i class="fas fa-phone text-custom-primary mr-3"></i>
+                        <span class="text-gray-300">+237 6 99 99 99 99</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-custom-primary mr-3"></i>
+                        <span class="text-gray-300">contact@homecameroun.cn</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt text-custom-primary mr-3"></i>
+                        <span class="text-gray-300">Yaoundé & Douala, Cameroun</span>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mt-6 mb-4">Suivez-nous</h3>
+                <div class="flex space-x-4">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-custom-primary transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-custom-primary transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-custom-primary transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-custom-primary transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bas de footer -->
+        <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2026 Home Cameroun - Tous droits réservés.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white text-sm transition">Mentions légales</a>
+                <a href="#" class="text-gray-400 hover:text-white text-sm transition">Politique de
+                    confidentialité</a>
+                <a href="#" class="text-gray-400 hover:text-white text-sm transition">Conditions d'utilisation</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

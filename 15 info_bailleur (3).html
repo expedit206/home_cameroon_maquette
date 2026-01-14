@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Cameroon - Vérification Bailleur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Animation pour les étapes du formulaire */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hc-primary': '#E54801',
+                        'hc-primary-dark': '#913327',
+                        'hc-secondary': '#1B0B38',
+                        'hc-light': '#FAF9F5',
+                        'hc-text': '#333333',
+                        'hc-text-light': '#666666',
+                        'hc-footer-bg': '#2c1b3d',
+                        'hc-footer-social': '#4a2c5d',
+                        'hc-gray-300': '#d1d5db',
+                        'hc-gray-400': '#9ca3af',
+                        'hc-gray-500': '#6b7280',
+                        'hc-gray-600': '#4b5563',
+                        'hc-gray-700': '#374151'
+                    },
+                    fontFamily: {
+                        'segoe': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'hc': '0 4px 12px rgba(27, 11, 56, 0.1)',
+                        'hc-lg': '0 8px 25px rgba(27, 11, 56, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-hc-light text-hc-text min-h-screen flex flex-col">
+<header class="bg-white text-hc-secondary sticky top-0 z-50 shadow-hc py-4 px-4 sm:px-6 lg:px-12 xl:px-20 transition-all duration-300 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 no-underline group">
+            <div class="relative w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14">
+                <img src="img/logo.png" alt="Logo Home Cameroon" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-br from-hc-primary/0 to-hc-primary/0 rounded-xl group-hover:from-hc-primary/5 group-hover:to-hc-primary-dark/5 transition-all duration-500"></div>
+            </div>
+            <div class="flex flex-col">
+                <div class="text-lg lg:text-xl xl:text-2xl font-bold leading-tight tracking-tight">
+                    Home<span class="text-hc-primary">Cameroon</span>
+                </div>
+                <span class="text-xs text-hc-text-light font-medium hidden sm:block">
+                    Votre maison, notre passion
+                </span>
+            </div>
+        </a>
+        
+        <!-- Navigation desktop -->
+        <nav class="hidden lg:flex items-center gap-6 xl:gap-8 mr-6">
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-home text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Accueil</span>
+                </div>
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full"></div>
+            </a>
+            
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-search text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Explorer</span>
+                </div>
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full"></div>
+            </a>
+            
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <div class="relative">
+                        <i class="fas fa-home text-sm text-hc-primary"></i>
+                        <div class="absolute -top-1 -right-1 w-2 h-2 bg-hc-primary rounded-full animate-pulse"></div>
+                    </div>
+                    <span class="text-hc-primary font-semibold">Mes logements</span>
+                </div>
+                <div class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-hc-primary via-hc-primary/70 to-hc-primary-dark rounded-full"></div>
+            </a>
+            
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-question-circle text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Aide</span>
+                </div>
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full"></div>
+            </a>
+        </nav>
+        
+        <!-- Menu utilisateur -->
+        <div class="flex items-center gap-3 sm:gap-4">
+            <!-- Bouton ajouter annonce -->
+            <a href="#" class="hidden sm:flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-hc-primary to-hc-primary-dark text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md">
+                <i class="fas fa-plus"></i>
+                <span class="hidden md:inline">Publier</span>
+            </a>
+            
+            <!-- Notification -->
+            <div class="relative group">
+                <button id="bellIcon" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-hc-primary/10 transition-all duration-300 relative border border-gray-200">
+                    <i class="fas fa-bell text-lg text-hc-secondary group-hover:text-hc-primary"></i>
+                    <div class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-hc-primary to-hc-primary-dark text-white text-xs rounded-full flex items-center justify-center font-bold shadow-lg animate-bounce">2</div>
+                </button>
+            </div>
+            
+            <!-- Avatar desktop -->
+            <div class="hidden lg:block relative group">
+                <button class="flex items-center gap-3 p-1 rounded-xl hover:bg-gray-50 transition-all duration-300 border border-transparent hover:border-gray-200">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-hc-primary to-hc-primary-dark flex items-center justify-center text-white font-bold shadow-sm border-2 border-white">JD</div>
+                        <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                    </div>
+                    <div class="hidden xl:block text-left">
+                        <p class="text-sm font-semibold text-hc-secondary">John Doe</p>
+                        <p class="text-xs text-hc-text-light">Locataire Premium</p>
+                    </div>
+                    <i class="fas fa-chevron-down text-xs text-hc-text-light group-hover:text-hc-primary transition-colors duration-300"></i>
+                </button>
+            </div>
+            
+            <!-- Menu burger mobile -->
+            <button id="menuBurger" class="lg:hidden relative w-10 h-10 rounded-lg bg-gray-50 flex flex-col items-center justify-center gap-1.5 hover:bg-hc-primary/10 transition-all duration-300 group border border-gray-200">
+                <span class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary group-hover:w-6"></span>
+                <span class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary"></span>
+                <span class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary group-hover:w-6"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+    <!-- Contenu principal -->
+    <main class="flex-1 flex flex-col lg:flex-row">
+        <!-- Section des étapes -->
+        <section class="lg:w-1/2 bg-gradient-to-b from-hc-secondary/90 to-hc-primary-dark/90 text-white relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')] bg-center bg-cover opacity-30"></div>
+            
+            <div class="relative z-10 p-6 md:p-8 lg:p-12 xl:p-16 flex flex-col justify-center h-full">
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 text-center lg:text-left">
+                    Vérification de compte <span class="text-hc-primary">Bailleur</span>
+                </h1>
+                
+                <div class="space-y-6 mt-8">
+                    <!-- Étape 1 -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 md:p-6 border border-white/20">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-hc-primary text-white min-w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
+                                1
+                            </div>
+                            <div class="flex-1">
+                                <strong class="block text-base md:text-lg mb-1">Informations personnelles</strong>
+                                <p class="text-sm md:text-base text-white/90">
+                                    Remplissez vos informations personnelles pour nous aider à vous identifier.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 2 -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 md:p-6 border border-white/20">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-hc-primary text-white min-w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
+                                2
+                            </div>
+                            <div class="flex-1">
+                                <strong class="block text-base md:text-lg mb-1">Documents d'identité</strong>
+                                <p class="text-sm md:text-base text-white/90">
+                                    Téléchargez les copies de votre CNI pour vérification de votre identité.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 3 -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 md:p-6 border border-white/20">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-hc-primary text-white min-w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
+                                3
+                            </div>
+                            <div class="flex-1">
+                                <strong class="block text-base md:text-lg mb-1">Validation du compte</strong>
+                                <p class="text-sm md:text-base text-white/90">
+                                    Une fois vérifié, votre compte sera activé pour toutes les fonctionnalités.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Icônes sociales (mobile/tablette) -->
+                <div class="mt-10 pt-8 border-t border-white/20 lg:hidden">
+                    <div class="flex justify-center gap-5">
+                        <a href="#" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-hc-primary hover:bg-hc-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-hc-primary hover:bg-hc-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-hc-primary hover:bg-hc-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-hc-primary hover:bg-hc-primary hover:text-white transition-all duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section du formulaire -->
+        <section class="lg:w-1/2 p-6 md:p-8 lg:p-12 xl:p-16 bg-hc-light flex items-center">
+            <div class="w-full max-w-2xl mx-auto">
+                <h2 class="text-xl md:text-2xl lg:text-3xl font-semibold text-hc-secondary mb-2 text-center lg:text-left">
+                    Informations du bailleur
+                </h2>
+                <p class="text-hc-primary-dark text-sm md:text-base text-center lg:text-left mb-8 pb-4 border-b-2 border-hc-primary">
+                    Veuillez compléter toutes les informations pour vérifier votre compte
+                </p>
+                
+                <!-- Barre de progression -->
+                <div class="relative mb-10">
+                    <div class="absolute top-5 left-0 right-0 h-0.5 bg-hc-gray-300 -z-10"></div>
+                    <div class="flex justify-between">
+                        <!-- Étape 1 -->
+                        <div class="flex flex-col items-center relative z-10">
+                            <div class="w-10 h-10 rounded-full bg-hc-primary text-white flex items-center justify-center font-bold mb-2" id="step-circle-1">
+                                1
+                            </div>
+                            <span class="text-xs text-hc-secondary font-medium" id="step-label-1">Informations</span>
+                        </div>
+                        
+                        <!-- Étape 2 -->
+                        <div class="flex flex-col items-center relative z-10">
+                            <div class="w-10 h-10 rounded-full bg-hc-gray-300 text-hc-gray-500 flex items-center justify-center font-bold mb-2" id="step-circle-2">
+                                2
+                            </div>
+                            <span class="text-xs text-hc-gray-500" id="step-label-2">Documents</span>
+                        </div>
+                        
+                        <!-- Étape 3 -->
+                        <div class="flex flex-col items-center relative z-10">
+                            <div class="w-10 h-10 rounded-full bg-hc-gray-300 text-hc-gray-500 flex items-center justify-center font-bold mb-2" id="step-circle-3">
+                                3
+                            </div>
+                            <span class="text-xs text-hc-gray-500" id="step-label-3">Validation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulaire -->
+                <form id="verification-form" class="animate-fade-in">
+                    <!-- Étape 1: Informations personnelles -->
+                    <div id="step-1" class="form-step">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+                            <!-- Nom -->
+                            <div class="space-y-2">
+                                <label for="lastname" class="block text-sm font-medium text-hc-secondary">
+                                    Nom <span class="text-hc-primary">*</span>
+                                </label>
+                                <input type="text" id="lastname" class="w-full px-4 py-3 border-2 border-hc-gray-300 rounded-lg focus:border-hc-primary-dark focus:ring-3 focus:ring-hc-primary/10 focus:outline-none transition-all duration-300" placeholder="Votre nom de famille" required>
+                            </div>
+                            
+                            <!-- Prénom -->
+                            <div class="space-y-2">
+                                <label for="firstname" class="block text-sm font-medium text-hc-secondary">
+                                    Prénom <span class="text-hc-primary">*</span>
+                                </label>
+                                <input type="text" id="firstname" class="w-full px-4 py-3 border-2 border-hc-gray-300 rounded-lg focus:border-hc-primary-dark focus:ring-3 focus:ring-hc-primary/10 focus:outline-none transition-all duration-300" placeholder="Votre prénom" required>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+                            <!-- Date de naissance -->
+                            <div class="space-y-2">
+                                <label for="birthdate" class="block text-sm font-medium text-hc-secondary">
+                                    Date de naissance <span class="text-hc-primary">*</span>
+                                </label>
+                                <input type="date" id="birthdate" class="w-full px-4 py-3 border-2 border-hc-gray-300 rounded-lg focus:border-hc-primary-dark focus:ring-3 focus:ring-hc-primary/10 focus:outline-none transition-all duration-300" required>
+                            </div>
+                            
+                            <!-- Numéro CNI -->
+                            <div class="space-y-2">
+                                <label for="cni-number" class="block text-sm font-medium text-hc-secondary">
+                                    Numéro de CNI <span class="text-hc-primary">*</span>
+                                </label>
+                                <input type="text" id="cni-number" class="w-full px-4 py-3 border-2 border-hc-gray-300 rounded-lg focus:border-hc-primary-dark focus:ring-3 focus:ring-hc-primary/10 focus:outline-none transition-all duration-300" placeholder="Ex: 123456789012" required>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+                            <!-- Téléphone -->
+                            <div class="space-y-2">
+                                <label for="phone" class="block text-sm font-medium text-hc-secondary">
+                                    Téléphone <span class="text-hc-primary">*</span>
+                                </label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 border-2 border-hc-gray-300 rounded-lg focus:border-hc-primary-dark focus:ring-3 focus:ring-hc-primary/10 focus:outline-none transition-all duration-300" placeholder="Votre numéro de téléphone" required>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="space-y-2">
+                                <label for="email" class="block text-sm font-medium text-hc-secondary">
+                                    Adresse email <span class="text-hc-primary">*</span>
+                                </label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border-2 border-hc-gray-300 rounded-lg focus:border-hc-primary-dark focus:ring-3 focus:ring-hc-primary/10 focus:outline-none transition-all duration-300" placeholder="votre@email.com" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Adresse -->
+                        <div class="space-y-2 mb-6">
+                            <label for="address" class="block text-sm font-medium text-hc-secondary">
+                                Adresse complète <span class="text-hc-primary">*</span>
+                            </label>
+                            <input type="text" id="address" class="w-full px-4 py-3 border-2 border-hc-gray-300 rounded-lg focus:border-hc-primary-dark focus:ring-3 focus:ring-hc-primary/10 focus:outline-none transition-all duration-300" placeholder="Votre adresse de résidence" required>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
+                            <!-- Ville -->
+                            <div class="space-y-2">
+                                <label for="city" class="block text-sm font-medium text-hc-secondary">
+                                    Ville
+                                </label>
+                                <input type="text" id="city" class="w-full px-4 py-3 border-2 border-hc-gray-300 rounded-lg focus:border-hc-primary-dark focus:ring-3 focus:ring-hc-primary/10 focus:outline-none transition-all duration-300" placeholder="Votre ville">
+                            </div>
+                            
+                            <!-- Profession -->
+                            <div class="space-y-2">
+                                <label for="profession" class="block text-sm font-medium text-hc-secondary">
+                                    Profession
+                                </label>
+                                <input type="text" id="profession" class="w-full px-4 py-3 border-2 border-hc-gray-300 rounded-lg focus:border-hc-primary-dark focus:ring-3 focus:ring-hc-primary/10 focus:outline-none transition-all duration-300" placeholder="Votre profession">
+                            </div>
+                        </div>
+                        
+                        <!-- Bouton suivant -->
+                        <button type="button" id="next-to-step-2" class="w-full bg-hc-primary text-white py-4 px-6 rounded-lg font-semibold hover:bg-hc-primary-dark transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg">
+                            Suivant <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Étape 2: Documents -->
+                    <div id="step-2" class="form-step hidden">
+                        <!-- Recto CNI -->
+                        <div class="space-y-2 mb-6">
+                            <label class="block text-sm font-medium text-hc-secondary">
+                                Recto de la CNI <span class="text-hc-primary">*</span>
+                            </label>
+                            <p class="text-sm text-hc-gray-500 italic">Format accepté: JPG, PNG, PDF. Taille max: 5MB</p>
+                            <div class="border-2 border-dashed border-hc-primary-dark rounded-xl p-6 text-center bg-hc-primary/5 hover:bg-hc-primary/10 transition-all duration-300 cursor-pointer" onclick="document.getElementById('cni-front').click()">
+                                <input type="file" id="cni-front" class="hidden" accept=".jpg,.jpeg,.png,.pdf" required>
+                                <div class="flex flex-col items-center">
+                                    <i class="fas fa-cloud-upload-alt text-4xl text-hc-primary mb-4"></i>
+                                    <p class="font-medium text-hc-secondary mb-2">Téléchargez le recto de votre CNI</p>
+                                    <p class="text-sm text-hc-gray-500">Cliquez pour parcourir vos fichiers</p>
+                                </div>
+                            </div>
+                            <div id="front-file-info" class="hidden mt-4 bg-hc-primary/10 border border-hc-primary rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fas fa-file-image text-hc-primary text-xl"></i>
+                                        <span id="front-file-name" class="font-medium text-hc-secondary"></span>
+                                    </div>
+                                    <button type="button" onclick="removeFile('cni-front')" class="text-hc-primary hover:text-hc-primary-dark">
+                                        <i class="fas fa-times text-xl"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Verso CNI -->
+                        <div class="space-y-2 mb-6">
+                            <label class="block text-sm font-medium text-hc-secondary">
+                                Verso de la CNI <span class="text-hc-primary">*</span>
+                            </label>
+                            <p class="text-sm text-hc-gray-500 italic">Format accepté: JPG, PNG, PDF. Taille max: 5MB</p>
+                            <div class="border-2 border-dashed border-hc-primary-dark rounded-xl p-6 text-center bg-hc-primary/5 hover:bg-hc-primary/10 transition-all duration-300 cursor-pointer" onclick="document.getElementById('cni-back').click()">
+                                <input type="file" id="cni-back" class="hidden" accept=".jpg,.jpeg,.png,.pdf" required>
+                                <div class="flex flex-col items-center">
+                                    <i class="fas fa-cloud-upload-alt text-4xl text-hc-primary mb-4"></i>
+                                    <p class="font-medium text-hc-secondary mb-2">Téléchargez le verso de votre CNI</p>
+                                    <p class="text-sm text-hc-gray-500">Cliquez pour parcourir vos fichiers</p>
+                                </div>
+                            </div>
+                            <div id="back-file-info" class="hidden mt-4 bg-hc-primary/10 border border-hc-primary rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fas fa-file-image text-hc-primary text-xl"></i>
+                                        <span id="back-file-name" class="font-medium text-hc-secondary"></span>
+                                    </div>
+                                    <button type="button" onclick="removeFile('cni-back')" class="text-hc-primary hover:text-hc-primary-dark">
+                                        <i class="fas fa-times text-xl"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Document supplémentaire -->
+                        <div class="space-y-2 mb-8">
+                            <label class="block text-sm font-medium text-hc-secondary">
+                                Autre document (optionnel)
+                            </label>
+                            <p class="text-sm text-hc-gray-500 italic">Vous pouvez télécharger un justificatif de domicile ou autre document pertinent</p>
+                            <div class="border-2 border-dashed border-hc-gray-300 rounded-xl p-6 text-center bg-hc-gray-50 hover:bg-hc-gray-100 transition-all duration-300 cursor-pointer" onclick="document.getElementById('additional-doc-input').click()">
+                                <input type="file" id="additional-doc-input" class="hidden" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                                <div class="flex flex-col items-center">
+                                    <i class="fas fa-file-upload text-4xl text-hc-gray-500 mb-4"></i>
+                                    <p class="font-medium text-hc-secondary mb-2">Téléchargez un document supplémentaire</p>
+                                    <p class="text-sm text-hc-gray-500">Cliquez pour parcourir vos fichiers</p>
+                                </div>
+                            </div>
+                            <div id="additional-file-info" class="hidden mt-4 bg-hc-gray-100 border border-hc-gray-300 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fas fa-file text-hc-gray-500 text-xl"></i>
+                                        <span id="additional-file-name" class="font-medium text-hc-secondary"></span>
+                                    </div>
+                                    <button type="button" onclick="removeFile('additional-doc-input')" class="text-hc-gray-500 hover:text-hc-gray-700">
+                                        <i class="fas fa-times text-xl"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Checkbox déclaration -->
+                        <div class="flex items-start mb-8">
+                            <input type="checkbox" id="declaration" class="mt-1 mr-3 h-5 w-5 text-hc-primary focus:ring-hc-primary" required>
+                            <label for="declaration" class="text-sm text-hc-secondary leading-tight">
+                                Je certifie sur l'honneur l'exactitude des informations fournies et autorise Home Cameroon 
+                                à vérifier leur authenticité. Je comprends que toute fausse déclaration peut entraîner 
+                                la suspension ou la fermeture de mon compte.
+                            </label>
+                        </div>
+                        
+                        <!-- Boutons navigation -->
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <button type="button" id="prev-to-step-1" class="bg-hc-secondary text-white py-4 px-6 rounded-lg font-semibold hover:bg-hc-secondary/90 transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg flex-1">
+                                <i class="fas fa-arrow-left"></i> Précédent
+                            </button>
+                            <button type="submit" class="bg-hc-primary text-white py-4 px-6 rounded-lg font-semibold hover:bg-hc-primary-dark transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg flex-1">
+                                <i class="fas fa-check-circle"></i> Soumettre pour vérification
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-hc-footer-bg text-gray-300 pt-10 pb-6 mt-auto">
+        <div class="container mx-auto px-4">
+            <!-- Contenu principal du footer -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+                <!-- Colonne 1: Logo et description -->
+                <div>
+                    <div class="text-hc-primary text-3xl font-bold mb-4">Home Cameroon</div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        La plateforme n°1 pour trouver votre logement idéal au Cameroun. 
+                        Studios, chambres, appartements, maisons et villas modernes à Yaoundé, 
+                        Douala et partout au pays.
+                    </p>
+                </div>
+
+                <!-- Colonne 2: Liens rapides -->
+                <div>
+                    <h3 class="text-hc-primary text-lg font-semibold mb-6">Liens rapides</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">
+                                Accueil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">
+                                Catégories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">
+                                Toutes les annonces
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">
+                                Publier une annonce
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">
+                                À propos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Colonne 3: Contact -->
+                <div>
+                    <h3 class="text-hc-primary text-lg font-semibold mb-6">Contact</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-phone text-hc-primary mt-1 mr-3"></i>
+                            <span class="text-gray-300">+237 6 99 99 99 99</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-hc-primary mt-1 mr-3"></i>
+                            <span class="text-gray-300">contact@homecameroun.cm</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-hc-primary mt-1 mr-3"></i>
+                            <span class="text-gray-300">Yaoundé & Douala, Cameroun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonne 4: Réseaux sociaux -->
+                <div>
+                    <h3 class="text-hc-primary text-lg font-semibold mb-6">Suivez-nous</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="w-12 h-12 bg-hc-footer-social rounded-full flex items-center justify-center text-white hover:bg-hc-primary transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-hc-footer-social rounded-full flex items-center justify-center text-white hover:bg-hc-primary transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-hc-footer-social rounded-full flex items-center justify-center text-white hover:bg-hc-primary transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-hc-footer-social rounded-full flex items-center justify-center text-white hover:bg-hc-primary transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-400 text-sm mr-2">Supporté avec fierté au</span>
+                        <span class="text-2xl">🇨🇲</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Séparateur -->
+            <div class="border-t border-gray-700 pt-6">
+                <!-- Section inférieure -->
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2025 Home Cameroon - Tous droits réservés.
+                    </div>
+                    
+                    <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                        <a href="#" class="text-gray-400 hover:text-hc-primary text-sm transition-colors duration-300">
+                            Mentions légales
+                        </a>
+                        <span class="text-gray-600">|</span>
+                        <a href="#" class="text-gray-400 hover:text-hc-primary text-sm transition-colors duration-300">
+                            Politique de confidentialité
+                        </a>
+                        <span class="text-gray-600">|</span>
+                        <a href="#" class="text-gray-400 hover:text-hc-primary text-sm transition-colors duration-300">
+                            Conditions d'utilisation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Variables pour gérer les étapes
+        let currentStep = 1;
+        
+        // Éléments DOM
+        const step1 = document.getElementById('step-1');
+        const step2 = document.getElementById('step-2');
+        const nextButton = document.getElementById('next-to-step-2');
+        const prevButton = document.getElementById('prev-to-step-1');
+        const stepCircles = {
+            1: document.getElementById('step-circle-1'),
+            2: document.getElementById('step-circle-2'),
+            3: document.getElementById('step-circle-3')
+        };
+        const stepLabels = {
+            1: document.getElementById('step-label-1'),
+            2: document.getElementById('step-label-2'),
+            3: document.getElementById('step-label-3')
+        };
+        
+        // Fonction pour passer à l'étape suivante
+        function goToNextStep() {
+            if (currentStep === 1) {
+                // Valider les champs de l'étape 1
+                if (!validateStep1()) {
+                    return;
+                }
+                
+                // Passer à l'étape 2
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                
+                // Mettre à jour la barre de progression
+                updateProgressBar(2);
+                
+                currentStep = 2;
+                
+                // Scroll doux vers le haut sur mobile
+                if (window.innerWidth < 768) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }
+        
+        // Fonction pour revenir à l'étape précédente
+        function goToPrevStep() {
+            if (currentStep === 2) {
+                // Revenir à l'étape 1
+                step2.classList.add('hidden');
+                step1.classList.remove('hidden');
+                
+                // Mettre à jour la barre de progression
+                updateProgressBar(1);
+                
+                currentStep = 1;
+                
+                // Scroll doux vers le haut sur mobile
+                if (window.innerWidth < 768) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }
+        
+        // Mettre à jour la barre de progression
+        function updateProgressBar(step) {
+            // Réinitialiser tous les cercles
+            Object.values(stepCircles).forEach(circle => {
+                circle.classList.remove('bg-hc-primary', 'bg-hc-primary-dark', 'bg-hc-gray-300');
+                circle.classList.add('bg-hc-gray-300', 'text-hc-gray-500');
+            });
+            
+            Object.values(stepLabels).forEach(label => {
+                label.classList.remove('text-hc-secondary', 'font-medium');
+                label.classList.add('text-hc-gray-500');
+            });
+            
+            // Mettre à jour selon l'étape
+            if (step === 1) {
+                stepCircles[1].classList.remove('bg-hc-gray-300', 'text-hc-gray-500');
+                stepCircles[1].classList.add('bg-hc-primary', 'text-white');
+                stepLabels[1].classList.remove('text-hc-gray-500');
+                stepLabels[1].classList.add('text-hc-secondary', 'font-medium');
+            } else if (step === 2) {
+                stepCircles[1].classList.remove('bg-hc-gray-300', 'text-hc-gray-500');
+                stepCircles[1].classList.add('bg-hc-primary-dark', 'text-white');
+                stepLabels[1].classList.remove('text-hc-gray-500');
+                stepLabels[1].classList.add('text-hc-secondary', 'font-medium');
+                
+                stepCircles[2].classList.remove('bg-hc-gray-300', 'text-hc-gray-500');
+                stepCircles[2].classList.add('bg-hc-primary', 'text-white');
+                stepLabels[2].classList.remove('text-hc-gray-500');
+                stepLabels[2].classList.add('text-hc-secondary', 'font-medium');
+            } else if (step === 3) {
+                stepCircles[1].classList.remove('bg-hc-gray-300', 'text-hc-gray-500');
+                stepCircles[1].classList.add('bg-hc-primary-dark', 'text-white');
+                stepLabels[1].classList.remove('text-hc-gray-500');
+                stepLabels[1].classList.add('text-hc-secondary', 'font-medium');
+                
+                stepCircles[2].classList.remove('bg-hc-gray-300', 'text-hc-gray-500');
+                stepCircles[2].classList.add('bg-hc-primary-dark', 'text-white');
+                stepLabels[2].classList.remove('text-hc-gray-500');
+                stepLabels[2].classList.add('text-hc-secondary', 'font-medium');
+                
+                stepCircles[3].classList.remove('bg-hc-gray-300', 'text-hc-gray-500');
+                stepCircles[3].classList.add('bg-hc-primary', 'text-white');
+                stepLabels[3].classList.remove('text-hc-gray-500');
+                stepLabels[3].classList.add('text-hc-secondary', 'font-medium');
+            }
+        }
+        
+        // Validation de l'étape 1
+        function validateStep1() {
+            const requiredFields = [
+                'lastname', 'firstname', 'birthdate', 'cni-number', 'phone', 'email', 'address'
+            ];
+            
+            let isValid = true;
+            let firstInvalidField = null;
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    isValid = false;
+                    if (!firstInvalidField) {
+                        firstInvalidField = field;
+                    }
+                    field.classList.add('border-hc-primary', 'ring-3', 'ring-hc-primary/10');
+                    field.classList.remove('border-hc-gray-300');
+                } else {
+                    field.classList.remove('border-hc-primary', 'ring-3', 'ring-hc-primary/10');
+                    field.classList.add('border-hc-gray-300');
+                }
+            });
+            
+            // Validation spécifique pour la date de naissance
+            const birthdate = document.getElementById('birthdate').value;
+            if (birthdate) {
+                const birthDate = new Date(birthdate);
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                
+                if (age < 18) {
+                    alert('Vous devez avoir au moins 18 ans pour être bailleur.');
+                    document.getElementById('birthdate').classList.add('border-hc-primary', 'ring-3', 'ring-hc-primary/10');
+                    isValid = false;
+                }
+            }
+            
+            if (!isValid) {
+                alert('Veuillez remplir tous les champs obligatoires de l\'étape 1.');
+                if (firstInvalidField) {
+                    firstInvalidField.focus();
+                }
+            }
+            
+            return isValid;
+        }
+        
+        // Gestion du téléchargement des fichiers
+        document.getElementById('cni-front').addEventListener('change', function(e) {
+            handleFileUpload(e, 'front-file-info', 'front-file-name');
+        });
+        
+        document.getElementById('cni-back').addEventListener('change', function(e) {
+            handleFileUpload(e, 'back-file-info', 'back-file-name');
+        });
+        
+        document.getElementById('additional-doc-input').addEventListener('change', function(e) {
+            handleFileUpload(e, 'additional-file-info', 'additional-file-name');
+        });
+        
+        function handleFileUpload(event, fileInfoId, fileNameId) {
+            const file = event.target.files[0];
+            if (file) {
+                // Vérifier la taille du fichier (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Le fichier est trop volumineux. La taille maximale est de 5MB.');
+                    event.target.value = '';
+                    return;
+                }
+                
+                // Afficher les informations du fichier
+                document.getElementById(fileInfoId).classList.remove('hidden');
+                document.getElementById(fileNameId).textContent = file.name;
+                
+                // Animation
+                document.getElementById(fileInfoId).style.animation = 'fadeIn 0.5s ease-in-out';
+            }
+        }
+        
+        function removeFile(inputId) {
+            const input = document.getElementById(inputId);
+            input.value = '';
+            
+            if (inputId === 'cni-front') {
+                document.getElementById('front-file-info').classList.add('hidden');
+            } else if (inputId === 'cni-back') {
+                document.getElementById('back-file-info').classList.add('hidden');
+            } else if (inputId === 'additional-doc-input') {
+                document.getElementById('additional-file-info').classList.add('hidden');
+            }
+        }
+        
+        // Validation du formulaire complet
+        document.getElementById('verification-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Vérifier que l'étape 1 est valide
+            if (!validateStep1()) {
+                // Revenir à l'étape 1 si elle n'est pas valide
+                goToPrevStep();
+                return;
+            }
+            
+            // Vérifier les fichiers de l'étape 2
+            const cniFront = document.getElementById('cni-front').files[0];
+            const cniBack = document.getElementById('cni-back').files[0];
+            const declaration = document.getElementById('declaration').checked;
+            
+            if (!cniFront) {
+                alert('Veuillez télécharger le recto de votre CNI.');
+                return;
+            }
+            
+            if (!cniBack) {
+                alert('Veuillez télécharger le verso de votre CNI.');
+                return;
+            }
+            
+            if (!declaration) {
+                alert('Vous devez accepter la déclaration sur l\'honneur.');
+                return;
+            }
+            
+            // Récupération des valeurs pour l'affichage
+            const lastname = document.getElementById('lastname').value;
+            const firstname = document.getElementById('firstname').value;
+            
+            // Simuler l'envoi du formulaire
+            alert(`✅ Vérification soumise avec succès pour ${firstname} ${lastname}!\n\nVotre demande sera traitée dans les 48 heures. Vous recevrez une notification par email une fois votre compte vérifié.`);
+            
+            // Mettre à jour la barre de progression pour montrer la validation
+            updateProgressBar(3);
+            
+            // Animation de succès
+            const submitBtn = document.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Soumission réussie !';
+            submitBtn.classList.remove('bg-hc-primary', 'hover:bg-hc-primary-dark');
+            submitBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+            
+            // Réinitialiser le formulaire après 3 secondes (simulation)
+            setTimeout(() => {
+                document.getElementById('verification-form').reset();
+                document.getElementById('front-file-info').classList.add('hidden');
+                document.getElementById('back-file-info').classList.add('hidden');
+                document.getElementById('additional-file-info').classList.add('hidden');
+                
+                // Revenir à l'étape 1
+                goToPrevStep();
+                
+                // Réinitialiser la barre de progression
+                updateProgressBar(1);
+                
+                // Réinitialiser le bouton
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Soumettre pour vérification';
+                submitBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                submitBtn.classList.add('bg-hc-primary', 'hover:bg-hc-primary-dark');
+            }, 3000);
+        });
+        
+        // Événements pour les boutons de navigation
+        nextButton.addEventListener('click', goToNextStep);
+        prevButton.addEventListener('click', goToPrevStep);
+        
+        // Menu mobile
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            alert('Menu mobile (simulation) - Redirection vers la page d\'accueil');
+        });
+        
+        // Interactions pour les icônes de réseaux sociaux
+        document.querySelectorAll('.social-icon, .footer-social-icons a').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.preventDefault();
+                const platform = this.getAttribute('title') || this.querySelector('i').className;
+                alert(`Redirection vers ${platform} (simulation)`);
+            });
+        });
+        
+        // Amélioration mobile: focus sur les champs
+        document.querySelectorAll('input, select').forEach(input => {
+            input.addEventListener('focus', function() {
+                if (window.innerWidth < 768) {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+        
+        // Date de naissance: ajuster pour mobile
+        if (window.innerWidth < 768) {
+            const birthdateInput = document.getElementById('birthdate');
+            birthdateInput.type = 'text';
+            birthdateInput.placeholder = 'JJ/MM/AAAA';
+            
+            birthdateInput.addEventListener('click', function() {
+                this.type = 'date';
+                this.focus();
+            });
+        }
+        
+        // Initialiser la barre de progression
+        updateProgressBar(1);
+    </script>
+</body>
+</html>

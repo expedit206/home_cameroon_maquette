@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Cameroon - Récapitulatif des Paiements</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hc-primary': '#E54801',
+                        'hc-primary-dark': '#913327',
+                        'hc-secondary': '#1B0B38',
+                        'hc-light': '#FAF9F5',
+                        'hc-text': '#333333',
+                        'hc-text-light': '#666666',
+                        'hc-success': '#2ecc71',
+                        'hc-warning': '#f39c12',
+                        'hc-info': '#3498db',
+                        'hc-danger': '#e74c3c',
+                        'hc-footer-bg': '#2c1b3d',
+                        'hc-footer-social': '#4a2c5d'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'segoe': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'hc': '0 4px 12px rgba(27, 11, 56, 0.1)',
+                        'hc-lg': '0 8px 25px rgba(27, 11, 56, 0.15)',
+                    },
+                    animation: {
+                        'fadeInUp': 'fadeInUp 0.6s ease-out forwards',
+                        'fadeIn': 'fadeIn 0.5s ease-out',
+                        'slideIn': 'slideIn 0.3s ease-out',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .animate-slideIn {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        /* Animation delays pour les cartes */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="font-inter bg-hc-light text-hc-text min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white text-hc-secondary sticky top-0 z-50 shadow-hc py-4 px-4 sm:px-6 lg:px-12 xl:px-20 transition-all duration-300 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 no-underline group">
+                <div class="relative w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14">
+                    <img src="img/logo.png" alt="Logo Home Cameroon" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-br from-hc-primary/0 to-hc-primary/0 rounded-xl group-hover:from-hc-primary/5 group-hover:to-hc-primary-dark/5 transition-all duration-500"></div>
+                </div>
+                <div class="flex flex-col">
+                    <div class="text-lg lg:text-xl xl:text-2xl font-bold leading-tight tracking-tight">
+                        Home<span class="text-hc-primary">Cameroon</span>
+                    </div>
+                    <span class="text-xs text-hc-text-light font-medium hidden sm:block animate-fadeIn">
+                        Votre maison, notre passion
+                    </span>
+                </div>
+            </a>
+            
+            <!-- Navigation desktop -->
+            <nav class="hidden lg:flex items-center gap-6 xl:gap-8 mr-6">
+                <a href="#" class="group relative px-3 py-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-home text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                        <span class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Accueil</span>
+                    </div>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full"></div>
+                </a>
+                
+                <a href="#" class="group relative px-3 py-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-search text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                        <span class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Explorer</span>
+                    </div>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full"></div>
+                </a>
+                
+                <a href="#" class="group relative px-3 py-2">
+                    <div class="flex items-center gap-2">
+                        <div class="relative">
+                            <i class="fas fa-home text-sm text-hc-primary"></i>
+                            <div class="absolute -top-1 -right-1 w-2 h-2 bg-hc-primary rounded-full animate-pulse"></div>
+                        </div>
+                        <span class="text-hc-primary font-semibold">Mes logements</span>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-hc-primary via-hc-primary/70 to-hc-primary-dark rounded-full"></div>
+                </a>
+                
+                <a href="#" class="group relative px-3 py-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-question-circle text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                        <span class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Aide</span>
+                    </div>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full"></div>
+                </a>
+            </nav>
+            
+            <!-- Menu utilisateur -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Notification -->
+                <div class="relative group">
+                    <button class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-hc-primary/10 transition-all duration-300 relative border border-gray-200">
+                        <i class="fas fa-bell text-lg text-hc-secondary group-hover:text-hc-primary"></i>
+                        <div class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-hc-primary to-hc-primary-dark text-white text-xs rounded-full flex items-center justify-center font-bold shadow-lg animate-bounce">2</div>
+                    </button>
+                    <div class="absolute right-0 top-full mt-2 w-64 bg-white rounded-xl shadow-hc-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-gray-100">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="font-semibold text-hc-secondary">Notifications</h4>
+                            <span class="text-xs text-hc-primary cursor-pointer hover:underline">Tout marquer</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-hc-primary/5 rounded-lg border border-hc-primary/10">
+                                <p class="text-sm font-medium text-hc-secondary">Nouveau message</p>
+                                <p class="text-xs text-hc-text-light mt-1">De Jean Dupont</p>
+                            </div>
+                            <div class="p-3 bg-gray-50/50 rounded-lg">
+                                <p class="text-sm font-medium text-hc-secondary">Visite confirmée</p>
+                                <p class="text-xs text-hc-text-light mt-1">Demain à 15h</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Avatar desktop -->
+                <div class="hidden lg:block relative group">
+                    <button class="flex items-center gap-3 p-1 rounded-xl hover:bg-gray-50 transition-all duration-300 border border-transparent hover:border-gray-200">
+                        <div class="relative">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-hc-primary to-hc-primary-dark flex items-center justify-center text-white font-bold shadow-sm border-2 border-white">JD</div>
+                            <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                        </div>
+                        <div class="hidden xl:block text-left">
+                            <p class="text-sm font-semibold text-hc-secondary">John Doe</p>
+                            <p class="text-xs text-hc-text-light">Locataire Premium</p>
+                        </div>
+                        <i class="fas fa-chevron-down text-xs text-hc-text-light group-hover:text-hc-primary transition-colors duration-300"></i>
+                    </button>
+                    
+                    <!-- Menu dropdown -->
+                    <div class="absolute right-0 top-full mt-3 w-56 bg-white rounded-xl shadow-hc-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <div class="p-4 border-b border-gray-100 bg-gradient-to-r from-hc-primary/5 to-hc-primary-dark/5">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-hc-primary to-hc-primary-dark flex items-center justify-center text-white font-bold text-lg border-2 border-white shadow-sm">JD</div>
+                                <div>
+                                    <p class="font-semibold text-hc-secondary">John Doe</p>
+                                    <p class="text-xs text-hc-text-light">john.doe@email.com</p>
+                                    <span class="inline-block mt-1 px-2 py-0.5 bg-hc-primary/10 text-hc-primary text-xs rounded-full">Premium</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <a href="#" class="flex items-center gap-3 p-3 text-hc-text hover:bg-hc-primary/5 hover:text-hc-primary rounded-lg transition-colors duration-200 group/item">
+                                <i class="fas fa-user text-hc-primary w-5"></i>
+                                <span>Mon profil</span>
+                                <i class="fas fa-chevron-right text-xs text-gray-400 ml-auto group-hover/item:text-hc-primary"></i>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-3 text-hc-text hover:bg-hc-primary/5 hover:text-hc-primary rounded-lg transition-colors duration-200 group/item">
+                                <i class="fas fa-home text-hc-primary w-5"></i>
+                                <span>Mes logements</span>
+                                <i class="fas fa-chevron-right text-xs text-gray-400 ml-auto group-hover/item:text-hc-primary"></i>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-3 text-hc-text hover:bg-hc-primary/5 hover:text-hc-primary rounded-lg transition-colors duration-200 group/item">
+                                <i class="fas fa-cog text-hc-primary w-5"></i>
+                                <span>Paramètres</span>
+                                <i class="fas fa-chevron-right text-xs text-gray-400 ml-auto group-hover/item:text-hc-primary"></i>
+                            </a>
+                        </div>
+                        <div class="p-2 border-t border-gray-100">
+                            <a href="#" class="flex items-center gap-3 p-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 group/item">
+                                <i class="fas fa-sign-out-alt w-5"></i>
+                                <span>Déconnexion</span>
+                                <i class="fas fa-chevron-right text-xs text-red-400 ml-auto group-hover/item:text-red-500"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Menu burger mobile -->
+                <button id="menuBurger" class="lg:hidden relative w-10 h-10 rounded-lg bg-gray-50 flex flex-col items-center justify-center gap-1.5 hover:bg-hc-primary/10 transition-all duration-300 group border border-gray-200">
+                    <span class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary group-hover:w-6"></span>
+                    <span class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary"></span>
+                    <span class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary group-hover:w-6"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 py-6 px-4 sm:px-6 lg:px-12 xl:px-20">
+        <div class="max-w-7xl mx-auto">
+            <!-- Page Header -->
+            <div class="bg-gradient-to-r from-hc-primary/5 to-hc-primary-dark/3 rounded-2xl p-6 lg:p-8 mb-8 border border-hc-primary/10 animate-fadeInUp">
+                <h1 class="text-2xl lg:text-3xl xl:text-4xl font-bold text-hc-secondary mb-3">Récapitulatif des Paiements</h1>
+                <p class="text-hc-text-light mb-6 lg:mb-8">Consultez l'historique complet de tous vos paiements</p>
+                
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-xl shadow-hc p-5 border-l-4 border-hc-primary animate-fadeInUp delay-100">
+                        <div class="text-2xl lg:text-3xl font-bold text-hc-secondary mb-1">328 450 FCFA</div>
+                        <div class="text-sm text-hc-text-light">Total ce mois</div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-hc p-5 border-l-4 border-hc-primary animate-fadeInUp delay-200">
+                        <div class="text-2xl lg:text-3xl font-bold text-hc-secondary mb-1">42</div>
+                        <div class="text-sm text-hc-text-light">Paiements effectués</div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-hc p-5 border-l-4 border-hc-primary animate-fadeInUp delay-300">
+                        <div class="text-2xl lg:text-3xl font-bold text-hc-secondary mb-1">38</div>
+                        <div class="text-sm text-hc-text-light">Paiements réussis</div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-hc p-5 border-l-4 border-hc-primary animate-fadeInUp delay-400">
+                        <div class="text-2xl lg:text-3xl font-bold text-hc-secondary mb-1">4</div>
+                        <div class="text-sm text-hc-text-light">En attente</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="bg-white rounded-2xl shadow-hc p-6 mb-8 animate-fadeInUp">
+                <!-- Search -->
+                <div class="relative mb-6">
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-hc-text-light"></i>
+                    <input type="text" id="searchInput" class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-hc-primary focus:ring-3 focus:ring-hc-primary/10 outline-none transition-all duration-300" placeholder="Rechercher un paiement...">
+                </div>
+                
+                <!-- Filter Tags -->
+                <div class="flex flex-wrap gap-3 mb-6">
+                    <button class="filter-tag px-4 py-2 rounded-full bg-hc-primary text-white text-sm font-semibold flex items-center gap-2" data-filter="all">
+                        <i class="fas fa-list"></i>
+                        Tous
+                    </button>
+                    <button class="filter-tag px-4 py-2 rounded-full bg-gray-100 text-hc-text hover:bg-hc-primary/10 hover:text-hc-primary text-sm font-semibold flex items-center gap-2 transition-all duration-300" data-filter="loyer">
+                        <i class="fas fa-home"></i>
+                        Loyer
+                    </button>
+                    <button class="filter-tag px-4 py-2 rounded-full bg-gray-100 text-hc-text hover:bg-hc-primary/10 hover:text-hc-primary text-sm font-semibold flex items-center gap-2 transition-all duration-300" data-filter="eneo">
+                        <i class="fas fa-bolt"></i>
+                        Électricité
+                    </button>
+                    <button class="filter-tag px-4 py-2 rounded-full bg-gray-100 text-hc-text hover:bg-hc-primary/10 hover:text-hc-primary text-sm font-semibold flex items-center gap-2 transition-all duration-300" data-filter="camwater">
+                        <i class="fas fa-tint"></i>
+                        Eau
+                    </button>
+                    <button class="filter-tag px-4 py-2 rounded-full bg-gray-100 text-hc-text hover:bg-hc-primary/10 hover:text-hc-primary text-sm font-semibold flex items-center gap-2 transition-all duration-300" data-filter="divers">
+                        <i class="fas fa-ellipsis-h"></i>
+                        Autres
+                    </button>
+                </div>
+                
+                <!-- Date Filter -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                    <div>
+                        <label class="block text-hc-secondary font-semibold text-sm mb-2">Période :</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <input type="date" id="startDate" class="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-hc-primary focus:ring-2 focus:ring-hc-primary/10 outline-none transition-all duration-300" value="2025-01-01">
+                            <input type="date" id="endDate" class="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-hc-primary focus:ring-2 focus:ring-hc-primary/10 outline-none transition-all duration-300" value="2025-03-15">
+                        </div>
+                    </div>
+                    <button id="applyFilter" class="px-4 py-3 bg-hc-primary text-white font-semibold rounded-lg hover:bg-hc-primary-dark transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fas fa-filter"></i>
+                        Appliquer
+                    </button>
+                </div>
+            </div>
+
+            <!-- Payments List -->
+            <div id="paymentsList" class="space-y-6 mb-8">
+                <!-- Payments will be loaded here by JavaScript -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center items-center gap-2 mb-8">
+                <button class="w-10 h-10 rounded-lg bg-gray-100 text-hc-text flex items-center justify-center hover:bg-hc-primary hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="w-10 h-10 rounded-lg bg-hc-primary text-white font-semibold">1</button>
+                <button class="w-10 h-10 rounded-lg bg-gray-100 text-hc-text font-semibold hover:bg-hc-primary hover:text-white transition-all duration-300">2</button>
+                <button class="w-10 h-10 rounded-lg bg-gray-100 text-hc-text font-semibold hover:bg-hc-primary hover:text-white transition-all duration-300">3</button>
+                <span class="px-2 text-hc-text-light">...</span>
+                <button class="w-10 h-10 rounded-lg bg-gray-100 text-hc-text font-semibold hover:bg-hc-primary hover:text-white transition-all duration-300">8</button>
+                <button class="w-10 h-10 rounded-lg bg-gray-100 text-hc-text flex items-center justify-center hover:bg-hc-primary hover:text-white transition-all duration-300">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:flex lg:justify-end gap-4">
+                <button id="exportBtn" class="px-6 py-4 bg-white border-2 border-hc-primary text-hc-primary font-bold rounded-xl hover:bg-hc-primary/5 transition-all duration-300 flex items-center justify-center gap-3">
+                    <i class="fas fa-file-export"></i>
+                    Exporter en PDF
+                </button>
+                <button id="printBtn" class="px-6 py-4 bg-hc-secondary text-white font-bold rounded-xl hover:bg-hc-secondary/90 transition-all duration-300 flex items-center justify-center gap-3">
+                    <i class="fas fa-print"></i>
+                    Imprimer
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-hc-footer-bg text-gray-300 pt-10 pb-6 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+                <!-- Colonne 1 -->
+                <div>
+                    <div class="text-hc-primary text-3xl font-bold mb-4">Home Cameroon</div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        La plateforme n°1 pour trouver votre logement idéal au Cameroun. 
+                        Studios, chambres, appartements, maisons et villas modernes à Yaoundé, 
+                        Douala et partout au pays.
+                    </p>
+                </div>
+
+                <!-- Colonne 2 -->
+                <div>
+                    <h3 class="text-hc-primary text-lg font-semibold mb-6">Liens rapides</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">Accueil</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">Catégories</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">Toutes les annonces</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">Publier une annonce</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">À propos</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-hc-primary transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Colonne 3 -->
+                <div>
+                    <h3 class="text-hc-primary text-lg font-semibold mb-6">Contact</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-phone text-hc-primary mt-1 mr-3"></i>
+                            <span class="text-gray-300">+237 6 99 99 99 99</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-hc-primary mt-1 mr-3"></i>
+                            <span class="text-gray-300">contact@homecameroun.cm</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-hc-primary mt-1 mr-3"></i>
+                            <span class="text-gray-300">Yaoundé & Douala, Cameroun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonne 4 -->
+                <div>
+                    <h3 class="text-hc-primary text-lg font-semibold mb-6">Suivez-nous</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="w-12 h-12 bg-hc-footer-social rounded-full flex items-center justify-center text-white hover:bg-hc-primary transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-hc-footer-social rounded-full flex items-center justify-center text-white hover:bg-hc-primary transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-hc-footer-social rounded-full flex items-center justify-center text-white hover:bg-hc-primary transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-hc-footer-social rounded-full flex items-center justify-center text-white hover:bg-hc-primary transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-400 text-sm mr-2">Supporté avec fierté au</span>
+                        <span class="text-2xl">🇨🇲</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Séparateur -->
+            <div class="border-t border-gray-700 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2025 Home Cameroon - Tous droits réservés.
+                    </div>
+                    
+                    <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                        <a href="#" class="text-gray-400 hover:text-hc-primary text-sm transition-colors duration-300">Mentions légales</a>
+                        <span class="text-gray-600">|</span>
+                        <a href="#" class="text-gray-400 hover:text-hc-primary text-sm transition-colors duration-300">Politique de confidentialité</a>
+                        <span class="text-gray-600">|</span>
+                        <a href="#" class="text-gray-400 hover:text-hc-primary text-sm transition-colors duration-300">Conditions d'utilisation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données des paiements
+        const paymentsData = [
+            {
+                id: 1,
+                type: "loyer",
+                label: "Loyer Mensuel",
+                amount: "75 000 FCFA",
+                date: "15 Mars 2025",
+                status: "paid",
+                method: "Mobile Money",
+                reference: "HMC-LOY-0325-001",
+                description: "Loyer du mois de Mars 2025 - Appartement B3"
+            },
+            {
+                id: 2,
+                type: "eneo",
+                label: "Facture ENEO",
+                amount: "23 500 FCFA",
+                date: "14 Mars 2025",
+                status: "paid",
+                method: "Carte Bancaire",
+                reference: "EN-789456123",
+                description: "Consommation Février 2025 - Compteur: 789456123"
+            },
+            {
+                id: 3,
+                type: "camwater",
+                label: "Facture Camwater",
+                amount: "18 200 FCFA",
+                date: "10 Mars 2025",
+                status: "paid",
+                method: "Mobile Money",
+                reference: "CW-456789",
+                description: "Facture d'eau Mars 2025"
+            },
+            {
+                id: 4,
+                type: "gaz",
+                label: "Recharge Gaz",
+                amount: "12 000 FCFA",
+                date: "05 Mars 2025",
+                status: "pending",
+                method: "Mobile Money",
+                reference: "GAZ-0325-001",
+                description: "Bouteille de gaz 12kg"
+            },
+            {
+                id: 5,
+                type: "condominium",
+                label: "Frais Condominium",
+                amount: "15 000 FCFA",
+                date: "01 Mars 2025",
+                status: "paid",
+                method: "Virement",
+                reference: "CONDO-0325",
+                description: "Frais de gestion commune Mars 2025"
+            },
+            {
+                id: 6,
+                type: "divers",
+                label: "Taxe d'Habitation",
+                amount: "5 000 FCFA",
+                date: "28 Février 2025",
+                status: "paid",
+                method: "Portefeuille",
+                reference: "TAXE-0225",
+                description: "Taxe annuelle d'habitation 2025"
+            }
+        ];
+
+        // Icônes et couleurs par type de paiement
+        const typeConfig = {
+            loyer: {
+                icon: 'fa-home',
+                color: 'from-hc-primary to-hc-primary-dark'
+            },
+            eneo: {
+                icon: 'fa-bolt',
+                color: 'from-orange-500 to-orange-700'
+            },
+            camwater: {
+                icon: 'fa-tint',
+                color: 'from-blue-500 to-blue-700'
+            },
+            gaz: {
+                icon: 'fa-fire',
+                color: 'from-yellow-500 to-yellow-700'
+            },
+            condominium: {
+                icon: 'fa-building',
+                color: 'from-purple-500 to-purple-700'
+            },
+            divers: {
+                icon: 'fa-ellipsis-h',
+                color: 'from-gray-500 to-gray-700'
+            }
+        };
+
+        // Fonction pour créer une carte de paiement
+        function createPaymentCard(payment, index) {
+            const config = typeConfig[payment.type] || typeConfig.divers;
+            const statusText = payment.status === 'paid' ? 'Payé' : 
+                              payment.status === 'pending' ? 'En attente' : 'Échoué';
+            const statusClass = payment.status === 'paid' ? 'bg-green-100 text-green-800' : 
+                               payment.status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800';
+            
+            return `
+                <div class="bg-white rounded-xl shadow-hc p-6 border-l-4 border-hc-primary animate-fadeInUp delay-${100 * (index % 6)}" data-type="${payment.type}">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                        <div class="flex items-start gap-4 mb-4 md:mb-0">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br ${config.color} flex items-center justify-center text-white text-xl">
+                                <i class="fas ${config.icon}"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-hc-secondary text-lg">${payment.label}</h3>
+                                <p class="text-hc-text-light text-sm">${payment.date}</p>
+                            </div>
+                        </div>
+                        <div class="px-3 py-1 ${statusClass} text-sm font-semibold rounded-full inline-block w-fit">
+                            ${statusText}
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-gray-100">
+                        <div>
+                            <div class="text-xs text-hc-text-light mb-1">Montant</div>
+                            <div class="font-bold text-hc-secondary">${payment.amount}</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-hc-text-light mb-1">Méthode</div>
+                            <div class="font-semibold text-hc-secondary">${payment.method}</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-hc-text-light mb-1">Référence</div>
+                            <div class="font-semibold text-hc-secondary">${payment.reference}</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-hc-text-light mb-1">Description</div>
+                            <div class="text-sm text-hc-secondary">${payment.description}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fonction pour afficher les paiements
+        function renderPayments(filter = 'all') {
+            const paymentsList = document.getElementById('paymentsList');
+            const filteredPayments = filter === 'all' 
+                ? paymentsData 
+                : paymentsData.filter(p => p.type === filter);
+            
+            paymentsList.innerHTML = '';
+            
+            if (filteredPayments.length === 0) {
+                paymentsList.innerHTML = `
+                    <div class="bg-white rounded-xl shadow-hc p-12 text-center">
+                        <i class="fas fa-search text-4xl text-hc-text-light mb-4 opacity-50"></i>
+                        <h3 class="text-xl font-semibold text-hc-secondary mb-2">Aucun paiement trouvé</h3>
+                        <p class="text-hc-text-light">Essayez de modifier vos filtres de recherche.</p>
+                    </div>
+                `;
+            } else {
+                filteredPayments.forEach((payment, index) => {
+                    paymentsList.innerHTML += createPaymentCard(payment, index);
+                });
+            }
+        }
+
+        // Gestion du menu burger
+        const menuBurger = document.getElementById('menuBurger');
+        const dropdownMenu = document.querySelector('.group button + div');
+        
+        menuBurger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuBurger.classList.toggle('active');
+            dropdownMenu.classList.toggle('active');
+        });
+        
+        // Fermer le menu en cliquant en dehors
+        document.addEventListener('click', (e) => {
+            if (!dropdownMenu.contains(e.target) && !menuBurger.contains(e.target)) {
+                menuBurger.classList.remove('active');
+                dropdownMenu.classList.remove('active');
+            }
+        });
+
+        // Gestion des filtres
+        document.querySelectorAll('.filter-tag').forEach(button => {
+            button.addEventListener('click', function() {
+                // Retirer la classe active de tous les boutons
+                document.querySelectorAll('.filter-tag').forEach(btn => {
+                    btn.classList.remove('bg-hc-primary', 'text-white');
+                    btn.classList.add('bg-gray-100', 'text-hc-text', 'hover:bg-hc-primary/10', 'hover:text-hc-primary');
+                });
+                
+                // Ajouter la classe active au bouton cliqué
+                this.classList.remove('bg-gray-100', 'text-hc-text', 'hover:bg-hc-primary/10', 'hover:text-hc-primary');
+                this.classList.add('bg-hc-primary', 'text-white');
+                
+                // Appliquer le filtre
+                const filter = this.getAttribute('data-filter');
+                renderPayments(filter);
+            });
+        });
+
+        // Recherche
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const currentFilter = document.querySelector('.filter-tag.bg-hc-primary')?.getAttribute('data-filter') || 'all';
+            
+            let filtered = paymentsData;
+            
+            // Appliquer le filtre actuel
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(p => p.type === currentFilter);
+            }
+            
+            // Appliquer la recherche
+            if (searchTerm) {
+                filtered = filtered.filter(p => 
+                    p.label.toLowerCase().includes(searchTerm) ||
+                    p.description.toLowerCase().includes(searchTerm) ||
+                    p.reference.toLowerCase().includes(searchTerm) ||
+                    p.amount.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            // Afficher les résultats
+            const paymentsList = document.getElementById('paymentsList');
+            paymentsList.innerHTML = '';
+            
+            if (filtered.length === 0) {
+                paymentsList.innerHTML = `
+                    <div class="bg-white rounded-xl shadow-hc p-12 text-center">
+                        <i class="fas fa-search text-4xl text-hc-text-light mb-4 opacity-50"></i>
+                        <h3 class="text-xl font-semibold text-hc-secondary mb-2">Aucun résultat</h3>
+                        <p class="text-hc-text-light">Aucun paiement ne correspond à votre recherche.</p>
+                    </div>
+                `;
+            } else {
+                filtered.forEach((payment, index) => {
+                    paymentsList.innerHTML += createPaymentCard(payment, index);
+                });
+            }
+        });
+
+        // Appliquer le filtre de date
+        document.getElementById('applyFilter').addEventListener('click', function() {
+            showMessage('Filtre par date appliqué', 'info');
+        });
+
+        // Bouton d'export
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            showMessage('Génération du PDF en cours...', 'info');
+            setTimeout(() => {
+                showMessage('PDF généré avec succès !', 'success');
+            }, 1500);
+        });
+
+        // Bouton d'impression
+        document.getElementById('printBtn').addEventListener('click', function() {
+            showMessage('Préparation de l\'impression...', 'info');
+            setTimeout(() => {
+                window.print();
+            }, 1000);
+        });
+
+        // Fonction pour afficher les messages
+        function showMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            messageDiv.className = 'fixed top-6 right-6 px-6 py-4 rounded-xl text-white font-semibold z-50 shadow-xl animate-slideIn backdrop-blur-sm';
+            
+            if (type === 'error') {
+                messageDiv.classList.add('bg-red-500');
+            } else if (type === 'success') {
+                messageDiv.classList.add('bg-green-500');
+            } else {
+                messageDiv.classList.add('bg-hc-primary');
+            }
+            
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                setTimeout(() => {
+                    document.body.removeChild(messageDiv);
+                }, 500);
+            }, 3000);
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Rendre les paiements initiaux
+            renderPayments();
+            
+            // Définir les dates par défaut
+            const today = new Date();
+            const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+            
+            // Format YYYY-MM-DD
+            const formatDate = (date) => date.toISOString().split('T')[0];
+            
+            // Mettre à jour les champs de date
+            const startDate = document.getElementById('startDate');
+            const endDate = document.getElementById('endDate');
+            
+            if (startDate) startDate.value = formatDate(firstDayOfMonth);
+            if (endDate) endDate.value = formatDate(today);
+            
+            // Animation au chargement
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appartement F3 à Bonapriso - Home Cameroon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hc-primary': '#E54801',
+                        'hc-primary-dark': '#913327',
+                        'hc-secondary': '#1B0B38',
+                        'hc-light': '#FAF9F5',
+                        'hc-text': '#333333',
+                        'hc-text-light': '#666666',
+                    },
+                    fontFamily: {
+                        'segoe': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    },
+                    screens: {
+                        'xs': '475px',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            'from': { opacity: '0', transform: 'translateY(10px)' },
+                            'to': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeInUp: {
+                            'from': { opacity: '0', transform: 'translateY(-5px)' },
+                            'to': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'fade-in-up': 'fadeInUp 0.5s ease-out',
+                    },
+                    boxShadow: {
+                        'hc-lg': '0 10px 25px -5px rgba(27, 11, 56, 0.1), 0 8px 10px -6px rgba(27, 11, 56, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Accessibilité */
+        button:focus, 
+        a:focus {
+            outline: 2px solid #E54801;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="bg-hc-light text-hc-text font-segoe min-h-screen flex flex-col overflow-x-hidden scroll-smooth">
+
+<!-- Header -->
+<header class="bg-white text-hc-secondary sticky top-0 z-50 shadow-md py-4 px-4 sm:px-6 lg:px-12 xl:px-20 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 no-underline group">
+            <div class="relative w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14">
+                <img src="img/logo.png" 
+                     alt="Logo Home Cameroon" 
+                     class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-br from-hc-primary/0 to-hc-primary/0 rounded-xl group-hover:from-hc-primary/5 group-hover:to-hc-primary-dark/5 transition-all duration-500"></div>
+            </div>
+            
+            <div class="flex flex-col">
+                <div class="text-lg lg:text-xl xl:text-2xl font-bold leading-tight tracking-tight">
+                    Home<span class="text-hc-primary">Cameroon</span>
+                </div>
+                <span class="text-xs text-hc-text-light font-medium hidden sm:block animate-fade-in-up">
+                    Votre maison, notre passion
+                </span>
+            </div>
+        </a>
+        
+        <!-- Navigation desktop -->
+        <nav class="hidden lg:flex items-center gap-6 xl:gap-8 mr-6">
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-home text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">
+                        Accueil
+                    </span>
+                </div>
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full"></div>
+            </a>
+            
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-search text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">
+                        Explorer
+                    </span>
+                </div>
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full"></div>
+            </a>
+            
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <div class="relative">
+                        <i class="fas fa-home text-sm text-hc-primary"></i>
+                        <div class="absolute -top-1 -right-1 w-2 h-2 bg-hc-primary rounded-full animate-pulse"></div>
+                    </div>
+                    <span class="text-hc-primary font-semibold">
+                        Mes logements
+                    </span>
+                </div>
+                <div class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-hc-primary via-hc-primary/70 to-hc-primary-dark rounded-full"></div>
+            </a>
+            
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-question-circle text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">
+                        Aide
+                    </span>
+                </div>
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full"></div>
+            </a>
+        </nav>
+        
+        <!-- Menu utilisateur -->
+        <div class="flex items-center gap-3 sm:gap-4">
+            <!-- Bouton ajouter annonce -->
+            <a href="#" class="hidden sm:flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-hc-primary to-hc-primary-dark text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md">
+                <i class="fas fa-plus"></i>
+                <span class="hidden md:inline">Publier</span>
+            </a>
+            
+            <!-- Notification -->
+            <div class="relative group">
+                <button class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-hc-primary/10 transition-all duration-300 relative border border-gray-200">
+                    <i class="fas fa-bell text-lg text-hc-secondary group-hover:text-hc-primary"></i>
+                    <div class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-hc-primary to-hc-primary-dark text-white text-xs rounded-full flex items-center justify-center font-bold shadow-lg animate-bounce">
+                        2
+                    </div>
+                </button>
+                <div class="absolute right-0 top-full mt-2 w-64 bg-white rounded-xl shadow-hc-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-gray-100">
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="font-semibold text-hc-secondary">Notifications</h4>
+                        <span class="text-xs text-hc-primary cursor-pointer hover:underline">Tout marquer</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-hc-primary/5 rounded-lg border border-hc-primary/10">
+                            <p class="text-sm font-medium text-hc-secondary">Nouveau message</p>
+                            <p class="text-xs text-hc-text-light mt-1">De Jean Dupont</p>
+                        </div>
+                        <div class="p-3 bg-gray-50/50 rounded-lg">
+                            <p class="text-sm font-medium text-hc-secondary">Visite confirmée</p>
+                            <p class="text-xs text-hc-text-light mt-1">Demain à 15h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Avatar desktop -->
+            <div class="hidden lg:block relative group">
+                <button class="flex items-center gap-3 p-1 rounded-xl hover:bg-gray-50 transition-all duration-300 border border-transparent hover:border-gray-200">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-hc-primary to-hc-primary-dark flex items-center justify-center text-white font-bold shadow-sm border-2 border-white">
+                            JD
+                        </div>
+                        <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                    </div>
+                    <div class="hidden xl:block text-left">
+                        <p class="text-sm font-semibold text-hc-secondary">John Doe</p>
+                        <p class="text-xs text-hc-text-light">Locataire Premium</p>
+                    </div>
+                    <i class="fas fa-chevron-down text-xs text-hc-text-light group-hover:text-hc-primary transition-colors duration-300"></i>
+                </button>
+                
+                <!-- Menu dropdown -->
+                <div class="absolute right-0 top-full mt-3 w-56 bg-white rounded-xl shadow-hc-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div class="p-4 border-b border-gray-100 bg-gradient-to-r from-hc-primary/5 to-hc-primary-dark/5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-hc-primary to-hc-primary-dark flex items-center justify-center text-white font-bold text-lg border-2 border-white shadow-sm">
+                                JD
+                            </div>
+                            <div>
+                                <p class="font-semibold text-hc-secondary">John Doe</p>
+                                <p class="text-xs text-hc-text-light">john.doe@email.com</p>
+                                <span class="inline-block mt-1 px-2 py-0.5 bg-hc-primary/10 text-hc-primary text-xs rounded-full">
+                                    Premium
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-2">
+                        <a href="#" class="flex items-center gap-3 p-3 text-hc-text hover:bg-hc-primary/5 hover:text-hc-primary rounded-lg transition-colors duration-200 group/item">
+                            <i class="fas fa-user text-hc-primary w-5"></i>
+                            <span>Mon profil</span>
+                            <i class="fas fa-chevron-right text-xs text-gray-400 ml-auto group-hover/item:text-hc-primary"></i>
+                        </a>
+                        <a href="#" class="flex items-center gap-3 p-3 text-hc-text hover:bg-hc-primary/5 hover:text-hc-primary rounded-lg transition-colors duration-200 group/item">
+                            <i class="fas fa-home text-hc-primary w-5"></i>
+                            <span>Mes logements</span>
+                            <i class="fas fa-chevron-right text-xs text-gray-400 ml-auto group-hover/item:text-hc-primary"></i>
+                        </a>
+                        <a href="#" class="flex items-center gap-3 p-3 text-hc-text hover:bg-hc-primary/5 hover:text-hc-primary rounded-lg transition-colors duration-200 group/item">
+                            <i class="fas fa-cog text-hc-primary w-5"></i>
+                            <span>Paramètres</span>
+                            <i class="fas fa-chevron-right text-xs text-gray-400 ml-auto group-hover/item:text-hc-primary"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="p-2 border-t border-gray-100">
+                        <a href="#" class="flex items-center gap-3 p-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 group/item">
+                            <i class="fas fa-sign-out-alt w-5"></i>
+                            <span>Déconnexion</span>
+                            <i class="fas fa-chevron-right text-xs text-red-400 ml-auto group-hover/item:text-red-500"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Menu burger mobile -->
+            <button class="lg:hidden relative w-10 h-10 rounded-lg bg-gray-50 flex flex-col items-center justify-center gap-1.5 hover:bg-hc-primary/10 transition-all duration-300 group border border-gray-200">
+                <span class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary group-hover:w-6"></span>
+                <span class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary"></span>
+                <span class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary group-hover:w-6"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Navigation mobile fixe -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40 p-3">
+    <div class="flex justify-around items-center">
+        <a href="#" class="flex flex-col items-center p-2 text-hc-secondary hover:text-hc-primary transition-colors duration-300">
+            <i class="fas fa-home text-lg"></i>
+            <span class="text-xs mt-1">Accueil</span>
+        </a>
+        <a href="#" class="flex flex-col items-center p-2 text-hc-secondary hover:text-hc-primary transition-colors duration-300">
+            <i class="fas fa-search text-lg"></i>
+            <span class="text-xs mt-1">Explorer</span>
+        </a>
+        <a href="#" class="flex flex-col items-center p-2 text-hc-primary relative">
+            <div class="relative">
+                <i class="fas fa-home text-lg"></i>
+                <div class="absolute -top-1 -right-1 w-2 h-2 bg-hc-primary rounded-full"></div>
+            </div>
+            <span class="text-xs mt-1 font-semibold">Mes logements</span>
+        </a>
+        <a href="#" class="flex flex-col items-center p-2 text-hc-secondary hover:text-hc-primary transition-colors duration-300">
+            <i class="fas fa-bell text-lg"></i>
+            <span class="text-xs mt-1">Notifications</span>
+        </a>
+        <a href="#" class="flex flex-col items-center p-2 text-hc-secondary hover:text-hc-primary transition-colors duration-300">
+            <i class="fas fa-user text-lg"></i>
+            <span class="text-xs mt-1">Profil</span>
+        </a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="flex-1 px-4 py-4 animate-fade-in md:px-6 lg:px-8 lg:py-6 lg:max-w-7xl lg:mx-auto">
+    <!-- Layout desktop (grid) -->
+    <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+        <!-- Colonne gauche (2/3) -->
+        <div class="lg:col-span-2">
+            <!-- En-tête -->
+            <div class="mb-6">
+                <h1 class="text-xl font-bold text-hc-secondary mb-2 lg:text-2xl">
+                    Appartement F3 à Bonapriso
+                </h1>
+                
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="px-3 py-1 bg-hc-primary/10 text-hc-primary text-xs font-semibold rounded-full">
+                        À louer
+                    </span>
+                    <span class="text-xs text-hc-text-light">
+                        <i class="fas fa-map-marker-alt mr-1"></i>Bonapriso, Douala
+                    </span>
+                </div>
+                
+                <div class="flex items-center gap-4 text-xs text-hc-text-light">
+                    <span>Publié le 29/12/2025</span>
+                    <span>•</span>
+                    <span><i class="far fa-eye mr-1"></i>342 vues</span>
+                </div>
+            </div>
+
+            <!-- Galerie principale -->
+            <div class="mb-6 bg-white rounded-xl overflow-hidden shadow-sm lg:rounded-2xl lg:shadow-lg">
+                <div class="relative">
+                    <img id="mainImg" src="/img/3.jpg" alt="Appartement" class="w-full h-56 object-cover lg:h-96">
+                    <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center hover:scale-110 transition-transform">
+                        <i class="far fa-heart text-hc-primary"></i>
+                    </button>
+                </div>
+                
+                <!-- Miniatures -->
+                <div class="p-3 grid grid-cols-4 gap-2">
+                    <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
+                        <img src="/img/4.jpg" alt="Chambre" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
+                        <img src="/img/2.jpg" alt="Salon" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
+                        <img src="/img/1.jpg" alt="Salon 2" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
+                        <img src="/img/2.jpg" alt="Cuisine" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Détails du bien -->
+            <div class="mb-6 bg-white rounded-xl p-4 shadow-sm lg:p-6 lg:rounded-2xl lg:shadow-lg">
+                <h2 class="text-lg font-bold text-hc-secondary mb-4 flex items-center gap-2 lg:text-xl">
+                    <i class="fas fa-home text-hc-primary"></i>
+                    Caractéristiques
+                </h2>
+                
+                <p class="text-sm text-hc-text-light mb-4 leading-relaxed lg:text-base">
+                    Magnifique appartement F3 dans une résidence sécurisée à Bonapriso. 
+                    Idéal pour cadre expatrié ou famille.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
+                    <div class="flex items-center gap-2 p-2 bg-hc-light rounded-lg hover:bg-hc-primary/5 transition-colors">
+                        <i class="fas fa-bed text-hc-primary"></i>
+                        <div>
+                            <div class="text-xs text-hc-text-light">Chambres</div>
+                            <div class="font-semibold">3</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 bg-hc-light rounded-lg hover:bg-hc-primary/5 transition-colors">
+                        <i class="fas fa-bath text-hc-primary"></i>
+                        <div>
+                            <div class="text-xs text-hc-text-light">Salles de bain</div>
+                            <div class="font-semibold">2</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 bg-hc-light rounded-lg hover:bg-hc-primary/5 transition-colors">
+                        <i class="fas fa-ruler-combined text-hc-primary"></i>
+                        <div>
+                            <div class="text-xs text-hc-text-light">Surface</div>
+                            <div class="font-semibold">150 m²</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 bg-hc-light rounded-lg hover:bg-hc-primary/5 transition-colors">
+                        <i class="fas fa-car text-hc-primary"></i>
+                        <div>
+                            <div class="text-xs text-hc-text-light">Parking</div>
+                            <div class="font-semibold">Inclus</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Localisation -->
+            <div class="mb-6 bg-white rounded-xl p-4 shadow-sm lg:p-6 lg:rounded-2xl lg:shadow-lg">
+                <h2 class="text-lg font-bold text-hc-secondary mb-4 flex items-center gap-2 lg:text-xl">
+                    <i class="fas fa-map-marker-alt text-hc-primary"></i>
+                    Localisation
+                </h2>
+                
+                <p class="text-sm text-hc-text-light mb-4 lg:text-base">
+                    Bonapriso, Douala - Quartier prestigieux et sécurisé
+                </p>
+                
+                <div class="rounded-lg overflow-hidden border border-gray-200">
+                    <img src="https://c8.alamy.com/comp/2SW5CJ9/red-pin-needle-into-douala-city-of-cameroon-political-map-2SW5CJ9.jpg" 
+                         alt="Carte" 
+                         class="w-full h-40 object-cover lg:h-56">
+                </div>
+            </div>
+
+            <!-- Avis clients -->
+            <div class="mb-6 bg-white rounded-xl p-4 shadow-sm lg:p-6 lg:rounded-2xl lg:shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold text-hc-secondary lg:text-xl">Avis clients</h2>
+                    <div class="flex items-center gap-1">
+                        <i class="fas fa-star text-amber-500 text-sm"></i>
+                        <span class="font-bold">4.8</span>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 lg:overflow-visible lg:grid lg:grid-cols-2 lg:gap-6 lg:mx-0 lg:px-0">
+                    <div class="min-w-[280px] p-3 bg-hc-light rounded-lg lg:min-w-0">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-hc-primary to-hc-primary-dark flex items-center justify-center text-white text-xs font-bold">
+                                AM
+                            </div>
+                            <div>
+                                <div class="font-semibold text-sm">Aline Mbozo</div>
+                                <div class="text-xs text-hc-text-light">Octobre 2025</div>
+                            </div>
+                        </div>
+                        <div class="text-amber-500 text-sm mb-2">★★★★★</div>
+                        <p class="text-sm text-hc-text-light">
+                            Appartement impeccable, propre et bien équipé. Je recommande !
+                        </p>
+                    </div>
+                    
+                    <div class="min-w-[280px] p-3 bg-hc-light rounded-lg lg:min-w-0">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-hc-primary to-hc-primary-dark flex items-center justify-center text-white text-xs font-bold">
+                                PK
+                            </div>
+                            <div>
+                                <div class="font-semibold text-sm">Paul Kamga</div>
+                                <div class="text-xs text-hc-text-light">Novembre 2025</div>
+                            </div>
+                        </div>
+                        <div class="text-amber-500 text-sm mb-2">★★★★★</div>
+                        <p class="text-sm text-hc-text-light">
+                            Superbe emplacement, meubles de qualité et vue magnifique.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photos du quartier -->
+            <div class="mb-6 bg-white rounded-xl p-4 shadow-sm lg:p-6 lg:rounded-2xl lg:shadow-lg">
+                <h2 class="text-lg font-bold text-hc-secondary mb-4 lg:text-xl">Photos du quartier</h2>
+                <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
+                    <div class="aspect-square rounded-lg overflow-hidden">
+                        <img src="https://images.trvl-media.com/lodging/79000000/78700000/78694700/78694649/bf2b7618.jpg" 
+                             alt="Résidence" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden">
+                        <img src="https://i.ytimg.com/vi/jCMdQpcB10E/maxresdefault.jpg" 
+                             alt="Rue" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden">
+                        <img src="https://images.trvl-media.com/lodging/68000000/67590000/67581100/67581087/7a43f429.jpg" 
+                             alt="Quartier" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden">
+                        <img src="https://q-xx.bstatic.com/xdata/images/hotel/max500/504716870.jpg" 
+                             alt="Vue" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonne droite (1/3) - Côté desktop -->
+        <div class="lg:space-y-6">
+            <!-- Prix et CTA -->
+            <div class="mb-6 bg-gradient-to-r from-hc-secondary to-hc-primary text-white rounded-xl p-5 shadow-lg lg:rounded-2xl lg:p-8 lg:shadow-xl lg:mb-0">
+                <div class="text-center mb-4">
+                    <div class="text-3xl font-bold mb-1">100 000 FCFA</div>
+                    <div class="text-sm opacity-90">par mois</div>
+                </div>
+                
+                <div class="space-y-3 mb-5">
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="opacity-90">Caution</span>
+                        <span class="font-semibold">2 mois</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="opacity-90">Avance</span>
+                        <span class="font-semibold">6 mois</span>
+                    </div>
+                </div>
+                
+                <div class="space-y-3 lg:space-y-4">
+                    <button class="w-full py-3 bg-white text-hc-primary font-semibold rounded-lg text-sm hover:bg-gray-100 hover:scale-[1.02] transition-all duration-300">
+                        <i class="fas fa-calendar-alt mr-2"></i>Réserver une visite
+                    </button>
+                    <button class="w-full py-3 bg-hc-primary text-white font-semibold rounded-lg text-sm border border-white/20 hover:bg-hc-primary-dark hover:scale-[1.02] transition-all duration-300">
+                        <i class="fas fa-handshake mr-2"></i>Louer maintenant
+                    </button>
+                </div>
+            </div>
+
+            <!-- Annonceur -->
+            <div class="mb-6 bg-white rounded-xl p-4 shadow-sm lg:rounded-2xl lg:p-6 lg:shadow-lg">
+                <h2 class="text-lg font-bold text-hc-secondary mb-4">Annonceur</h2>
+                
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-hc-primary to-hc-primary-dark flex items-center justify-center text-white font-bold">
+                        JD
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-hc-secondary">Jean Dupont</h3>
+                        <p class="text-xs text-hc-text-light">Membre depuis 2023</p>
+                        <span class="inline-block px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full mt-1">
+                            ✔ Vérifié
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="flex gap-2">
+                    <button class="flex-1 py-2 border border-hc-primary text-hc-primary rounded-lg text-sm hover:bg-hc-primary/5 transition-colors">
+                        <i class="fas fa-envelope mr-1"></i>Contacter
+                    </button>
+                    <button class="flex-1 py-2 border border-gray-300 text-hc-secondary rounded-lg text-sm hover:bg-gray-50 transition-colors">
+                        <i class="fab fa-whatsapp mr-1"></i>WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biens similaires -->
+    <div class="mb-8 lg:mt-8">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-lg font-bold text-hc-secondary lg:text-xl">Biens similaires</h2>
+            <a href="#" class="text-sm text-hc-primary font-semibold hover:underline">
+                Voir tout
+            </a>
+        </div>
+        
+        <div class="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 lg:overflow-visible lg:grid lg:grid-cols-3 lg:gap-6 lg:mx-0 lg:px-0">
+            <!-- Carte 1 -->
+            <div class="min-w-[220px] bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 lg:min-w-0">
+                <div class="relative">
+                    <img src="/img/13.jpg" alt="Appartement" class="w-full h-40 object-cover">
+                    <button class="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 flex items-center justify-center hover:scale-110 transition-transform">
+                        <i class="far fa-heart text-hc-primary text-xs"></i>
+                    </button>
+                </div>
+                <div class="p-3">
+                    <div class="text-sm font-semibold text-hc-secondary mb-1">Appartement F3</div>
+                    <div class="text-xs text-hc-text-light mb-2">3ch • 2sdb • 110m²</div>
+                    <div class="text-base font-bold text-hc-primary">75 000 F</div>
+                    <button class="w-full mt-2 py-2 bg-hc-primary text-white text-xs rounded-lg hover:bg-hc-primary-dark transition-colors">
+                        Détails
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Carte 2 -->
+            <div class="min-w-[220px] bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 lg:min-w-0">
+                <div class="relative">
+                    <img src="/img/12.jpg" alt="Appartement" class="w-full h-40 object-cover">
+                    <button class="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 flex items-center justify-center hover:scale-110 transition-transform">
+                        <i class="far fa-heart text-hc-primary text-xs"></i>
+                    </button>
+                </div>
+                <div class="p-3">
+                    <div class="text-sm font-semibold text-hc-secondary mb-1">F4 moderne</div>
+                    <div class="text-xs text-hc-text-light mb-2">4ch • 3sdb • 160m²</div>
+                    <div class="text-base font-bold text-hc-primary">55 000 F</div>
+                    <button class="w-full mt-2 py-2 bg-hc-primary text-white text-xs rounded-lg hover:bg-hc-primary-dark transition-colors">
+                        Détails
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Carte 3 -->
+            <div class="min-w-[220px] bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 lg:min-w-0">
+                <div class="relative">
+                    <img src="/img/11.jpg" alt="Appartement" class="w-full h-40 object-cover">
+                    <button class="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 flex items-center justify-center hover:scale-110 transition-transform">
+                        <i class="far fa-heart text-hc-primary text-xs"></i>
+                    </button>
+                </div>
+                <div class="p-3">
+                    <div class="text-sm font-semibold text-hc-secondary mb-1">Penthouse vue mer</div>
+                    <div class="text-xs text-hc-text-light mb-2">3ch • 2sdb • 200m²</div>
+                    <div class="text-base font-bold text-hc-primary">80 000 F</div>
+                    <button class="w-full mt-2 py-2 bg-hc-primary text-white text-xs rounded-lg hover:bg-hc-primary-dark transition-colors">
+                        Détails
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-hc-secondary text-white mt-auto">
+    <div class="px-4 py-8 lg:px-8 lg:py-12 lg:max-w-7xl lg:mx-auto">
+        <div class="lg:grid lg:grid-cols-4 lg:gap-8">
+            <!-- Logo footer -->
+            <div class="mb-6 lg:col-span-1">
+                <div class="text-2xl font-bold mb-2">
+                    Home<span class="text-hc-primary">Cameroon</span>
+                </div>
+                <p class="text-sm text-gray-300">
+                    La plateforme n°1 pour trouver votre logement idéal au Cameroun.
+                </p>
+            </div>    
+                <div>
+                    <h3 class="font-semibold mb-3">Contact</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2 text-sm text-gray-300">
+                            <i class="fas fa-phone text-hc-primary text-xs"></i>
+                            <span>+237 6 99 99 99 99</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-gray-300">
+                            <i class="fas fa-envelope text-hc-primary text-xs"></i>
+                            <span>contact@homecameroun.cm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Réseaux sociaux -->
+            <div class="mb-6 lg:col-span-1">
+                <h3 class="font-semibold mb-3">Suivez-nous</h3>
+                <div class="flex gap-3">
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-hc-primary transition-colors">
+                        <i class="fab fa-facebook-f text-sm"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-hc-primary transition-colors">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-hc-primary transition-colors">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="pt-6 border-t border-white/10">
+            <div class="text-center text-xs text-gray-400">
+                <p class="mb-2">© 2025 Home Cameroon. Tous droits réservés.</p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <a href="#" class="hover:text-white transition-colors">Mentions légales</a>
+                    <span class="text-gray-600">•</span>
+                    <a href="#" class="hover:text-white transition-colors">Confidentialité</a>
+                    <span class="text-gray-600">•</span>
+                    <a href="#" class="hover:text-white transition-colors">CGU</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Galerie
+        const mainImg = document.getElementById('mainImg');
+        const thumbnails = document.querySelectorAll('.aspect-square img');
+        
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                mainImg.src = this.src;
+                mainImg.alt = this.alt;
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
