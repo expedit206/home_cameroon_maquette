@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Programmer une visite - HomeCameroun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hmc-primary': '#E54801',
+                        'hmc-secondary': '#913327',
+                        'hmc-dark': '#1B0B38',
+                        'hmc-light': '#FAF9F5',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .time-slot.selected {
+            background-color: #E54801 !important;
+            color: white !important;
+            border-color: #E54801 !important;
+        }
+        .payment-method.selected {
+            border-color: #E54801;
+            background-color: rgba(229, 72, 1, 0.1);
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background-color: #E54801;
+            border-radius: 2px;
+        }
+        .logo-container {
+            width: 52px;
+            height: 52px;
+        }
+       /* Styles pour le footer */
+    .footer-bg {
+      background: #1B0B38;
+    }
+    
+    .footer-secondary {
+      background: #16092e;
+    }
+    
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      background: #2a1157;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 20px;
+      transition: all 0.3s;
+    }
+    
+    .social-icon:hover {
+      background: #E54801;
+      transform: translateY(-3px);
+    }
+        @media (max-width: 768px) {
+            .logo-container { width: 44px; height: 44px; }
+        }
+    </style>
+</head>
+<body class="bg-hmc-light text-gray-800">
+
+<!-- ===================== HEADER ===================== -->
+<style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'hc-primary': '#E54801',
+                    'hc-primary-dark': '#913327',
+                    'hc-secondary': '#1B0B38',
+                    'hc-light': '#FAF9F5',
+                    'hc-text': '#333333',
+                    'hc-text-light': '#666666',
+                },
+                fontFamily: {
+                    'inter': ['Inter', 'sans-serif'],
+                },
+                boxShadow: {
+                    'hc': '0 4px 12px rgba(27, 11, 56, 0.1)',
+                    'hc-lg': '0 8px 25px rgba(27, 11, 56, 0.15)',
+                },
+                animation: {
+                    'fadeIn': 'fadeIn 0.5s ease-out',
+                    'bounce': 'bounce 1s infinite',
+                }
+            }
+        }
+    }
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Header -->
+<header
+    class="bg-white text-hc-secondary sticky top-0 z-50 shadow-hc py-4 px-4 sm:px-6 lg:px-12 xl:px-20 transition-all duration-300 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 no-underline group">
+            <div class="relative w-13 h-13 md:w-12 md:h-12 lg:w-14 lg:h-14">
+                <img src="img/logo.png" alt="Logo Home Cameroon" width="60"
+                    class=" object-contain group-hover:scale-105 transition-transform duration-300">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-hc-primary/0 to-hc-primary/0 rounded-xl group-hover:from-hc-primary/5 group-hover:to-hc-primary-dark/5 transition-all duration-500">
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <div class="text-lg lg:text-xl xl:text-2xl font-bold leading-tight tracking-tight">
+                    Home<span class="text-hc-primary">Cameroon</span>
+                </div>
+                <span class="text-xs text-hc-text-light font-medium hidden sm:block">
+                    Votre maison, notre passion
+                </span>
+            </div>
+        </a>
+
+        <!-- Navigation desktop -->
+        <nav class="hidden lg:flex items-center gap-6 xl:gap-8 mr-6">
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i
+                        class="fas fa-home text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span
+                        class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Accueil</span>
+                </div>
+                <div
+                    class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full">
+                </div>
+            </a>
+
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i
+                        class="fas fa-search text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span
+                        class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Explorer</span>
+                </div>
+                <div
+                    class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full">
+                </div>
+            </a>
+
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <div class="relative">
+                        <i class="fas fa-home text-sm text-hc-primary"></i>
+                        <div class="absolute -top-1 -right-1 w-2 h-2 bg-hc-primary rounded-full animate-pulse"></div>
+                    </div>
+                    <span class="text-hc-primary font-semibold">Mes logements</span>
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-hc-primary via-hc-primary/70 to-hc-primary-dark rounded-full">
+                </div>
+            </a>
+
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i
+                        class="fas fa-question-circle text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span
+                        class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Aide</span>
+                </div>
+                <div
+                    class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full">
+                </div>
+            </a>
+        </nav>
+
+        <!-- Menu utilisateur -->
+        <div class="flex items-center gap-3 sm:gap-4">
+            <!-- Bouton ajouter annonce -->
+            <a href="#"
+                class="hidden sm:flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-hc-primary to-hc-primary-dark text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md">
+                <i class="fas fa-plus"></i>
+                <span class="hidden md:inline">Publier</span>
+            </a>
+
+            <!-- Notification -->
+            <div class="relative group">
+                <button id="bellIcon"
+                    class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-hc-primary/10 transition-all duration-300 relative border border-gray-200">
+                    <i class="fas fa-bell text-lg text-hc-secondary group-hover:text-hc-primary"></i>
+                    <div
+                        class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-hc-primary to-hc-primary-dark text-white text-xs rounded-full flex items-center justify-center font-bold shadow-lg animate-bounce">
+                        2</div>
+                </button>
+            </div>
+
+            <!-- Avatar desktop -->
+            <div class="hidden lg:block relative group">
+                <button
+                    class="flex items-center gap-3 p-1 rounded-xl hover:bg-gray-50 transition-all duration-300 border border-transparent hover:border-gray-200">
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gradient-to-br from-hc-primary to-hc-primary-dark flex items-center justify-center text-white font-bold shadow-sm border-2 border-white">
+                            JD</div>
+                        <div
+                            class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white">
+                        </div>
+                    </div>
+                    <div class="hidden xl:block text-left">
+                        <p class="text-sm font-semibold text-hc-secondary">John Doe</p>
+                        <p class="text-xs text-hc-text-light">Locataire Premium</p>
+                    </div>
+                    <i
+                        class="fas fa-chevron-down text-xs text-hc-text-light group-hover:text-hc-primary transition-colors duration-300"></i>
+                </button>
+            </div>
+
+            <!-- Menu burger mobile -->
+            <button id="menuBurger"
+                class="lg:hidden relative w-10 h-10 rounded-lg bg-gray-50 flex flex-col items-center justify-center gap-1.5 hover:bg-hc-primary/10 transition-all duration-300 group border border-gray-200">
+                <span
+                    class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary group-hover:w-6"></span>
+                <span
+                    class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary"></span>
+                <span
+                    class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary group-hover:w-6"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Menu mobile latéral droit -->
+<div id="mobileMenu" class="fixed inset-y-0 right-[-100%] w-[85%] max-w-[340px] bg-white shadow-2xl z-50 transition-all duration-500 ease-in-out md:hidden">
+    <div class="flex flex-col h-full p-8">
+        <button id="closeMenu" class="self-end text-4xl text-hmc-dark mb-10">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="flex flex-col gap-8 text-xl font-medium">
+            <li><a href="#" class="block text-hmc-dark hover:text-hmc-primary transition-colors">Accueil</a></li>
+            <li><a href="#" class="block text-hmc-primary font-semibold">Annonces</a></li>
+            <li><a href="#" class="block text-hmc-dark hover:text-hmc-primary transition-colors">À propos</a></li>
+            <li><a href="#" class="block text-hmc-dark hover:text-hmc-primary transition-colors">Nos partenaires</a></li>
+            <li class="mt-10">
+                <a href="#" class="block w-full py-4 text-center bg-hmc-dark text-white rounded-full font-medium hover:bg-gray-800 transition-colors">
+                    Se connecter
+                </a>
+            </li>
+            <li class="mt-5">
+                <a href="#" class="block w-full py-5 text-center bg-hmc-primary text-white rounded-full font-bold shadow-md hover:bg-orange-700 transition-colors">
+                    Inscrire une location
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="overlay" class="fixed inset-0 bg-black/60 z-40 opacity-0 pointer-events-none transition-opacity duration-500 md:hidden"></div>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<main class="container mx-auto px-4 py-6 md:py-8 max-w-6xl">
+
+    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8 text-center">
+        <h1 class="text-2xl md:text-3xl font-bold text-hmc-dark mb-3">Programmer votre visite</h1>
+        <div class="inline-block">
+            <h2 class="text-xl md:text-2xl font-bold text-hmc-dark">
+                Villa Moderne 4 chambres - Bonamoussadi, Douala
+            </h2>
+            <p class="text-2xl md:text-3xl font-bold text-hmc-primary mt-3">
+                185 000 000 FCFA
+            </p>
+        </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+        <div class="lg:w-2/3">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <form id="visitForm" class="space-y-8">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-semibold text-hmc-dark mb-5">Vos informations</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Nom <span class="text-hmc-primary">*</span></label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Prénom <span class="text-hmc-primary">*</span></label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 font-medium mb-2">
+                                    Numéro de paiement Mobile Money <span class="text-hmc-primary">*</span>
+                                </label>
+                                <input type="tel" required placeholder="6XX XXX XXX" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-semibold text-hmc-dark mb-5">Quand souhaitez-vous visiter ?</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Date <span class="text-hmc-primary">*</span></label>
+                                <input type="date" id="visitDate" required class="w-full px-4 py-3 border border-gray-300 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Créneau <span class="text-hmc-primary">*</span></label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="time-slot py-3 text-center border rounded-lg cursor-pointer bg-gray-50 hover:bg-orange-50 selected" data-time="09:00">09:00-10:00</div>
+                                    <div class="time-slot py-3 text-center border rounded-lg cursor-pointer bg-gray-50 hover:bg-orange-50" data-time="10:30">10:30-11:30</div>
+                                    <div class="time-slot py-3 text-center border rounded-lg cursor-pointer bg-gray-50 hover:bg-orange-50" data-time="14:00">14:00-15:00</div>
+                                    <div class="time-slot py-3 text-center border rounded-lg cursor-pointer bg-gray-50 hover:bg-orange-50" data-time="15:30">15:30-16:30</div>
+                                </div>
+                                <input type="hidden" id="selectedTime" value="09:00" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                        <h3 class="text-xl md:text-2xl font-bold text-hmc-dark mb-5">Paiement des frais de visite</h3>
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between text-lg">
+                                <span>Frais accompagnement & carburant</span>
+                                <span class="font-bold">15 000 FCFA</span>
+                            </div>
+                            <hr />
+                            <div class="flex justify-between text-xl font-bold text-hmc-primary">
+                                <span>Total</span>
+                                <span>15 000 FCFA</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-3">Mode de paiement</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <button type="button" class="payment-method border-2 border-gray-300 rounded-xl py-5 flex flex-col items-center selected transition-all" data-method="orange">
+                                    <i class="fab fa-orange text-3xl text-orange-600 mb-2"></i>
+                                    <span class="font-medium">Orange Money</span>
+                                </button>
+                                <button type="button" class="payment-method border-2 border-gray-300 rounded-xl py-5 flex flex-col items-center transition-all" data-method="mtn">
+                                    <i class="fas fa-mobile-alt text-3xl text-yellow-600 mb-2"></i>
+                                    <span class="font-medium">MTN MoMo</span>
+                                </button>
+                            </div>
+                            <input type="hidden" id="paymentMethod" value="orange" required>
+                        </div>
+
+                        <div class="text-sm text-gray-600 mb-6">
+                            <p class="mb-2">Confirmation par <strong>SMS</strong> après paiement</p>
+                            <label class="flex items-start gap-3">
+                                <input type="checkbox" required class="mt-1 h-5 w-5 text-hmc-primary rounded">
+                                <span>J'accepte payer 15 000 FCFA immédiatement (non remboursable sauf annulation 48h avant)</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" 
+                                class="w-full bg-hmc-primary hover:bg-hmc-secondary text-white font-bold py-5 rounded-xl text-lg transition shadow-lg">
+                            <i class="fas fa-lock mr-3"></i> PAYER 15 000 FCFA ET RÉSERVER
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="lg:w-1/3 space-y-6">
+            <div class="hidden lg:block bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-hmc-dark mb-4">
+                    <i class="fas fa-info-circle text-hmc-primary mr-2"></i>Informations importantes
+                </h3>
+                <ul class="space-y-4 text-gray-600">
+                    <li class="flex items-start"><i class="fas fa-clock text-hmc-primary mt-1 mr-3"></i>Lun-Ven: 8h-18h, Sam: 9h-13h</li>
+                    <li class="flex items-start"><i class="fas fa-map-marker-alt text-hmc-primary mt-1 mr-3"></i>Rue 1.234, Quartier Bastos, Yaoundé</li>
+                    <li class="flex items-start"><i class="fas fa-phone-alt text-hmc-primary mt-1 mr-3"></i>+237 6XX XX XX XX</li>
+                </ul>
+            </div>
+
+            <div class="lg:hidden bg-white rounded-xl shadow-lg p-5">
+                <h3 class="text-lg font-semibold text-hmc-dark mb-2 flex justify-between">
+                    Infos importantes
+                    <i class="fas fa-chevron-down text-hmc-primary"></i>
+                </h3>
+                <p class="text-sm text-gray-600">Horaires 8h-18h • Bastos • Paiement sécurisé</p>
+            </div>
+
+            <div class="hidden lg:block bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-hmc-dark mb-4">
+                    <i class="fas fa-list-ol text-hmc-primary mr-2"></i>Déroulement
+                </h3>
+                <ol class="space-y-4 text-gray-600 text-sm">
+                    <li class="flex items-start"><div class="w-7 h-7 bg-hmc-primary/10 rounded-full flex items-center justify-center font-bold mr-3">1</div>Paiement & soumission</li>
+                    <li class="flex items-start"><div class="w-7 h-7 bg-hmc-primary/10 rounded-full flex items-center justify-center font-bold mr-3">2</div>Confirmation SMS</li>
+                    <li class="flex items-start"><div class="w-7 h-7 bg-hmc-primary/10 rounded-full flex items-center justify-center font-bold mr-3">3</div>Visite sur place</li>
+                </ol>
+            </div>
+
+            <div class="hidden lg:block bg-hmc-dark text-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-4">
+                    <i class="fas fa-exclamation-circle mr-2"></i>À noter
+                </h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-start"><i class="fas fa-check text-hmc-primary mt-1 mr-3"></i>10 min avant</li>
+                    <li class="flex items-start"><i class="fas fa-check text-hmc-primary mt-1 mr-3"></i>Pièce d'identité obligatoire</li>
+                    <li class="flex items-start"><i class="fas fa-check text-hmc-primary mt-1 mr-3"></i>Non remboursable sauf 48h avant</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ===================== FOOTER (exactement comme ton code) ===================== -->
+<!-- 
+  COMPOSANT FOOTER HOME CAMEROON - AVEC PRÉFIXE
+  Encapsulé pour éviter les conflits CSS
+-->
+
+<!-- Configuration Tailwind + préfixe personnalisé -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        prefix: 'hc-',
+        theme: {
+            extend: {
+                colors: {
+                    'primary': '#E54801',
+                    'primary-dark': '#913327',
+                    'secondary': '#1B0B38',
+                    'light': '#FAF9F5',
+                    'text': '#333333',
+                    'text-light': '#666666',
+                    'footer-bg': '#2c1b3d',
+                    'footer-social': '#4a2c5d',
+                    'gray-300': '#d1d5db',
+                    'gray-400': '#9ca3af',
+                    'gray-500': '#6b7280',
+                    'gray-600': '#4b5563',
+                    'gray-700': '#374151'
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    .hc-footer-wrapper * {
+        font-family: 'Inter', sans-serif;
+    }
+</style>
+
+<div class="hc-footer-wrapper">
+    <footer class="hc-bg-footer-bg hc-text-gray-300 hc-pt-10 hc-pb-6 hc-mt-auto">
+        <div class="hc-container hc-mx-auto hc-px-4">
+            <!-- Contenu principal du footer -->
+            <div class="hc-grid hc-grid-cols-1 md:hc-grid-cols-2 lg:hc-grid-cols-4 hc-gap-8 hc-mb-10">
+                <!-- Colonne 1: Logo et description -->
+                <div>
+                    <div class="hc-text-primary hc-text-3xl hc-font-bold hc-mb-4">Home Cameroon</div>
+                    <p class="hc-text-gray-400 hc-text-sm hc-leading-relaxed">
+                        La plateforme n°1 pour trouver votre logement idéal au Cameroun.
+                        Studios, chambres, appartements, maisons et villas modernes à Yaoundé,
+                        Douala et partout au pays.
+                    </p>
+                </div>
+
+                <!-- Colonne 2: Liens rapides -->
+                <div>
+                    <h3 class="hc-text-primary hc-text-lg hc-font-semibold hc-mb-6">Liens rapides</h3>
+                    <ul class="hc-space-y-3">
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                Accueil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                Catégories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                Toutes les annonces
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                Publier une annonce
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                À propos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Colonne 3: Contact -->
+                <div>
+                    <h3 class="hc-text-primary hc-text-lg hc-font-semibold hc-mb-6">Contact</h3>
+                    <div class="hc-space-y-4">
+                        <div class="hc-flex hc-items-start">
+                            <i class="fas fa-phone hc-text-primary hc-mt-1 hc-mr-3"></i>
+                            <span class="hc-text-gray-300">+237 6 99 99 99 99</span>
+                        </div>
+                        <div class="hc-flex hc-items-start">
+                            <i class="fas fa-envelope hc-text-primary hc-mt-1 hc-mr-3"></i>
+                            <span class="hc-text-gray-300">contact@homecameroun.cm</span>
+                        </div>
+                        <div class="hc-flex hc-items-start">
+                            <i class="fas fa-map-marker-alt hc-text-primary hc-mt-1 hc-mr-3"></i>
+                            <span class="hc-text-gray-300">Yaoundé & Douala, Cameroun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonne 4: Réseaux sociaux -->
+                <div>
+                    <h3 class="hc-text-primary hc-text-lg hc-font-semibold hc-mb-6">Suivez-nous</h3>
+                    <div class="hc-flex hc-space-x-4 hc-mb-6">
+                        <a href="#"
+                            class="hc-w-12 hc-h-12 hc-bg-footer-social hc-rounded-full hc-flex hc-items-center hc-justify-center hc-text-white hover:hc-bg-primary hc-transition-all hc-duration-300 hc-transform hover:hc--translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="hc-w-12 hc-h-12 hc-bg-footer-social hc-rounded-full hc-flex hc-items-center hc-justify-center hc-text-white hover:hc-bg-primary hc-transition-all hc-duration-300 hc-transform hover:hc--translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="hc-w-12 hc-h-12 hc-bg-footer-social hc-rounded-full hc-flex hc-items-center hc-justify-center hc-text-white hover:hc-bg-primary hc-transition-all hc-duration-300 hc-transform hover:hc--translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="hc-w-12 hc-h-12 hc-bg-footer-social hc-rounded-full hc-flex hc-items-center hc-justify-center hc-text-white hover:hc-bg-primary hc-transition-all hc-duration-300 hc-transform hover:hc--translate-y-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    <div class="hc-flex hc-items-center">
+                        <span class="hc-text-gray-400 hc-text-sm hc-mr-2">Supporté avec fierté au</span>
+                        <span class="hc-text-2xl">🇨🇲</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Séparateur -->
+            <div class="hc-border-t hc-border-gray-700 hc-pt-6">
+                <!-- Section inférieure -->
+                <div class="hc-flex hc-flex-col md:hc-flex-row hc-justify-between hc-items-center">
+                    <div class="hc-text-gray-500 hc-text-sm hc-mb-4 md:hc-mb-0">
+                        © 2025 Home Cameroon - Tous droits réservés.
+                    </div>
+
+                    <div class="hc-flex hc-flex-wrap hc-justify-center hc-gap-4 md:hc-gap-6">
+                        <a href="#"
+                            class="hc-text-gray-400 hover:hc-text-primary hc-text-sm hc-transition-colors hc-duration-300">
+                            Mentions légales
+                        </a>
+                        <span class="hc-text-gray-600">|</span>
+                        <a href="#"
+                            class="hc-text-gray-400 hover:hc-text-primary hc-text-sm hc-transition-colors hc-duration-300">
+                            Politique de confidentialité
+                        </a>
+                        <span class="hc-text-gray-600">|</span>
+                        <a href="#"
+                            class="hc-text-gray-400 hover:hc-text-primary hc-text-sm hc-transition-colors hc-duration-300">
+                            Conditions d'utilisation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Lien Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</body>
+</html>

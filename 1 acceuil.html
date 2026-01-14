@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Cameroon - Plateforme locative sécurisée</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --hc-primary: #E54801;
+            --hc-primary-dark: #913327;
+            --hc-secondary: #1B0B38;
+            --hc-light: #FAF9F5;
+            --hc-text: #333333;
+            --hc-text-light: #666666;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .image-bg {
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .property-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .property-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(27, 11, 56, 0.15);
+        }
+
+        .category-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(229, 72, 1, 0.1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--hc-primary);
+            box-shadow: 0 10px 25px rgba(229, 72, 1, 0.15);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--hc-primary) 0%, var(--hc-primary-dark) 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--hc-primary) 0%, var(--hc-primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .search-form-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(229, 72, 1, 0.2);
+        }
+
+        .stats-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 640px) {
+            .mobile-stack {
+                flex-direction: column;
+            }
+
+            .mobile-center {
+                text-align: center;
+            }
+
+            .mobile-full {
+                width: 100% !important;
+            }
+
+            .mobile-padding {
+                padding: 1.5rem 1rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+  
+     
+</style>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'hc-primary': '#E54801',
+                    'hc-primary-dark': '#913327',
+                    'hc-secondary': '#1B0B38',
+                    'hc-light': '#FAF9F5',
+                    'hc-text': '#333333',
+                    'hc-text-light': '#666666',
+                },
+                fontFamily: {
+                    'inter': ['Inter', 'sans-serif'],
+                },
+                boxShadow: {
+                    'hc': '0 4px 12px rgba(27, 11, 56, 0.1)',
+                    'hc-lg': '0 8px 25px rgba(27, 11, 56, 0.15)',
+                },
+                animation: {
+                    'fadeIn': 'fadeIn 0.5s ease-out',
+                    'bounce': 'bounce 1s infinite',
+                }
+            }
+        }
+    }
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Header -->
+<header
+    class="bg-white text-hc-secondary sticky top-0 z-50 shadow-hc py-2 px-4 sm:px-6 lg:px-12 xl:px-20 transition-all duration-300 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 no-underline group">
+            <div class="relative w-13 h-13 md:w-12 md:h-12 lg:w-14 lg:h-14">
+                <img src="img/logo.png" alt="Logo Home Cameroon" width="60"
+                    class=" object-contain group-hover:scale-105 transition-transform duration-300">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-hc-primary/0 to-hc-primary/0 rounded-xl group-hover:from-hc-primary/5 group-hover:to-hc-primary-dark/5 transition-all duration-500">
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <div class="text-lg lg:text-xl xl:text-2xl text-md font-bold leading-tight tracking-tight">
+                    Home<span class="text-hc-primary">Cameroon</span>
+                </div>
+                <span class="text-xs text-hc-text-light font-medium hidden sm:block">
+                    Votre maison, notre passion
+                </span>
+            </div>
+        </a>
+
+        <!-- Navigation desktop -->
+        <nav class="hidden lg:flex items-center gap-6 xl:gap-8 mr-6">
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i
+                        class="fas fa-home text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span
+                        class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Accueil</span>
+                </div>
+                <div
+                    class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full">
+                </div>
+            </a>
+
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i
+                        class="fas fa-search text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span
+                        class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Explorer</span>
+                </div>
+                <div
+                    class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full">
+                </div>
+            </a>
+
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <div class="relative">
+                        <i class="fas fa-home text-sm text-hc-primary"></i>
+                        <div class="absolute -top-1 -right-1 w-2 h-2 bg-hc-primary rounded-full animate-pulse"></div>
+                    </div>
+                    <span class="text-hc-primary font-semibold">Mes logements</span>
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-hc-primary via-hc-primary/70 to-hc-primary-dark rounded-full">
+                </div>
+            </a>
+
+            <a href="#" class="group relative px-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i
+                        class="fas fa-question-circle text-sm text-hc-secondary group-hover:text-hc-primary transition-colors duration-300"></i>
+                    <span
+                        class="text-hc-secondary group-hover:text-hc-primary font-medium transition-colors duration-300">Aide</span>
+                </div>
+                <div
+                    class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-hc-primary to-hc-primary-dark group-hover:w-4/5 transition-all duration-300 rounded-full">
+                </div>
+            </a>
+        </nav>
+
+        <!-- Menu utilisateur -->
+        <div class="flex items-center gap-3 sm:gap-4">
+            <!-- Bouton ajouter annonce -->
+            <a href="#"
+                class="hidden sm:flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-hc-primary to-hc-primary-dark text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md">
+                <i class="fas fa-plus"></i>
+                <span class="hidden md:inline">Publier</span>
+            </a>
+
+            <!-- Notification -->
+            <div class="relative group">
+                <button id="bellIcon"
+                    class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-hc-primary/10 transition-all duration-300 relative border border-gray-200">
+                    <i class="fas fa-bell text-lg text-hc-secondary group-hover:text-hc-primary"></i>
+                    <div
+                        class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-hc-primary to-hc-primary-dark text-white text-xs rounded-full flex items-center justify-center font-bold shadow-lg animate-bounce">
+                        2</div>
+                </button>
+            </div>
+
+            <!-- Avatar desktop -->
+            <div class="hidden lg:block relative group">
+                <button
+                    class="flex items-center gap-3 p-1 rounded-xl hover:bg-gray-50 transition-all duration-300 border border-transparent hover:border-gray-200">
+                    <div class="relative">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gradient-to-br from-hc-primary to-hc-primary-dark flex items-center justify-center text-white font-bold shadow-sm border-2 border-white">
+                            JD</div>
+                        <div
+                            class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white">
+                        </div>
+                    </div>
+                    <div class="hidden xl:block text-left">
+                        <p class="text-sm font-semibold text-hc-secondary">John Doe</p>
+                        <p class="text-xs text-hc-text-light">Locataire Premium</p>
+                    </div>
+                    <i
+                        class="fas fa-chevron-down text-xs text-hc-text-light group-hover:text-hc-primary transition-colors duration-300"></i>
+                </button>
+            </div>
+
+            <!-- Menu burger mobile -->
+            <button id="menuBurger"
+                class="lg:hidden relative w-10 h-10 rounded-lg bg-gray-50 flex flex-col items-center justify-center gap-1.5 hover:bg-hc-primary/10 transition-all duration-300 group border border-gray-200">
+                <span
+                    class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary group-hover:w-6"></span>
+                <span
+                    class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary"></span>
+                <span
+                    class="w-5 h-0.5 bg-hc-secondary rounded-full transition-all duration-300 group-hover:bg-hc-primary group-hover:w-6"></span>
+            </button>
+        </div>
+    </div>
+</header>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 image-bg" style="background-image: url('./maison.jpg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 py-16 md:py-24 lg:py-32">
+            <div class="max-w-3xl">
+                <!-- Badge -->
+                <span class="inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold bg-white/20 backdrop-blur-sm text-white border border-white/30">
+                    Plateforme 100% Camerounaise
+                </span>
+
+                <!-- Titre -->
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                    Trouvez votre logement<br>
+                    <span class="text-[var(--hc-primary)]">au cœur du Cameroun</span>
+                </h1>
+
+                <!-- Description -->
+                <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
+                    Une plateforme immobilière locale conçue pour faciliter
+                    la recherche, la location et la gestion de biens partout
+                    au Cameroun.
+                </p>
+
+                <!-- Formulaire de recherche -->
+                <div class="search-form-card rounded-2xl p-4 md:p-6 shadow-2xl animate-fade-in">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <!-- Ville -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Ville</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[var(--hc-primary)] focus:ring-2 focus:ring-[var(--hc-primary)]/20 outline-none">
+                                <option>Sélectionnez une ville</option>
+                                <option>Yaoundé</option>
+                                <option>Douala</option>
+                                <option>Bafoussam</option>
+                            </select>
+                        </div>
+
+                        <!-- Type de bien -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Type de bien</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[var(--hc-primary)] focus:ring-2 focus:ring-[var(--hc-primary)]/20 outline-none">
+                                <option>Tous les types</option>
+                                <option>Appartement</option>
+                                <option>Studio</option>
+                                <option>Chambre</option>
+                                <option>Maison</option>
+                            </select>
+                        </div>
+
+                        <!-- Budget -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Budget max</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[var(--hc-primary)] focus:ring-2 focus:ring-[var(--hc-primary)]/20 outline-none">
+                                <option>Tous budgets</option>
+                                <option>40 000 FCFA</option>
+                                <option>60 000 FCFA</option>
+                                <option>100 000 FCFA</option>
+                            </select>
+                        </div>
+
+                        <!-- Bouton recherche -->
+                        <div class="flex items-end">
+                            <button class="w-full gradient-bg text-white font-semibold py-3 px-6 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                                <i class="fas fa-search"></i>
+                                Rechercher
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="hidden md:flex gap-8 mt-12">
+                    <div class="stats-card rounded-xl p-4 min-w-[120px] text-center">
+                        <div class="text-2xl font-bold gradient-text">+1 200</div>
+                        <div class="text-sm text-gray-600">Biens disponibles</div>
+                    </div>
+                    <div class="stats-card rounded-xl p-4 min-w-[120px] text-center">
+                        <div class="text-2xl font-bold gradient-text">+300</div>
+                        <div class="text-sm text-gray-600">Propriétaires</div>
+                    </div>
+                    <div class="stats-card rounded-xl p-4 min-w-[120px] text-center">
+                        <div class="text-2xl font-bold gradient-text">10</div>
+                        <div class="text-sm text-gray-600">Régions couvertes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catégories -->
+    <section class="py-12 md:py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- En-tête -->
+            <div class="text-center mb-10 md:mb-14">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Explorez par catégorie</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Trouvez rapidement le type de bien qui correspond à vos besoins</p>
+            </div>
+
+            <!-- Grille des catégories -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Chambre -->
+                <div class="category-card bg-white rounded-xl p-6">
+                    <div class="flex justify-between">
+
+                        <div class="w-16 h-16 rounded-xl mb-4 image-bg" style="background-image: url('./img/appartement.jpg');"></div>
+                        <div class="w-16 h-16 rounded-xl mb-4 image-bg" style="background-image: url('./maison.jpg');"></div>
+                    <div class="w-16 h-16 rounded-xl mb-4 image-bg" style="background-image: url('./img/appartement.jpg');"></div>
+              
+                </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Chambres</h3>
+                    <p class="text-gray-600 text-sm mb-4">Chambres confortables en résidence</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[var(--hc-primary)] font-medium">59 annonces</span>
+                        <a href="#" class="text-gray-500 hover:text-[var(--hc-primary)]">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Appartement meublé -->
+                <div class="category-card bg-white rounded-xl p-6">
+                    <div class="category-card bg-white rounded-xl p-6">
+                        <div class="flex justify-between">
+                    
+                            <div class="w-16 h-16 rounded-xl mb-4 image-bg" style="background-image: url('./img/appartement.jpg');"></div>
+                            <div class="w-16 h-16 rounded-xl mb-4 image-bg" style="background-image: url('./maison.jpg');"></div>
+                            <div class="w-16 h-16 rounded-xl mb-4 image-bg" style="background-image: url('./img/appartement.jpg');"></div>
+                            
+                        </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Appartements meublés</h3>
+                    <p class="text-gray-600 text-sm mb-4">Appartements modernes équipés</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[var(--hc-primary)] font-medium">156 annonces</span>
+                        <a href="#" class="text-gray-500 hover:text-[var(--hc-primary)]">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Studio -->
+                <div class="category-card bg-white rounded-xl p-6">
+                        <div class="flex justify-between">
+                    
+                            <div class="w-16 h-16 rounded-xl mb-4 image-bg" style="background-image: url('./img/appartement.jpg');"></div>
+                            <div class="w-16 h-16 rounded-xl mb-4 image-bg" style="background-image: url('./maison.jpg');"></div>
+                            <div class="w-16 h-16 rounded-xl mb-4 image-bg" style="background-image: url('./img/appartement.jpg');"></div>
+                          
+                        </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Studios</h3>
+                    <p class="text-gray-600 text-sm mb-4">Studios pratiques et fonctionnels</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[var(--hc-primary)] font-medium">25 annonces</span>
+                        <a href="#" class="text-gray-500 hover:text-[var(--hc-primary)]">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tout explorer -->
+                <div class="category-card gradient-bg rounded-xl p-5 mt-4">
+                    <div class="w-14 h-14 rounded-xl mb-2 bg-white/20 flex items-center justify-center">
+                        <i class="fas fa-compass text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Tout explorer</h3>
+                    <p class="text-white/80 text-sm mb-3">Découvrez tous nos biens disponibles</p>
+                    <button class="w-full bg-white text-[var(--hc-primary)] font-medium py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                        Explorer maintenant
+                    </button>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="mt-1 bg-gradient-to-r from-[var(--hc-light)] to-white rounded-2xl p-6 border border-gray-200">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Vous ne trouvez pas ce que vous cherchez ?</h3>
+                        <p class="text-gray-600">Consultez toutes nos annonces ou utilisez notre recherche avancée</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:border-[var(--hc-primary)] hover:text-[var(--hc-primary)] transition-colors">
+                            Voir toutes les annonces
+                        </button>
+                        <button class="px-6 py-3 gradient-bg text-white rounded-lg hover:shadow-lg transition-all">
+                            Recherche avancée
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biens en vedette -->
+    <section class="py-2 md:py-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- En-tête -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-12">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Nouveaux biens disponibles</h2>
+                    <p class="text-gray-600 mt-2">Découvrez les dernières annonces ajoutées par nos bailleurs vérifiés</p>
+                </div>
+                <a href="#" class="mt-4 sm:mt-0 text-[var(--hc-primary)] font-medium hover:underline flex items-center gap-2">
+                    Voir toutes les annonces <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Grille des biens -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Carte 1 -->
+                <div class="property-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
+                    <div class="h-48 relative image-bg" style="background-image: url('./img/appartement.jpg');">
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-[var(--hc-primary)] text-white text-xs font-medium px-3 py-1 rounded-full">Nouveau</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-semibold text-gray-900">Appartement Moderne</h3>
+                            <span class="text-xl font-bold text-[var(--hc-primary)]">60 000 FCFA</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Par Jean Bailleur • Il y a 2h</p>
+                        <div class="flex items-center gap-4 text-gray-600 text-sm mb-4">
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-bed"></i>
+                                <span>2 ch.</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-bath"></i>
+                                <span>2 SdB</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-ruler"></i>
+                                <span>45 m²</span>
+                            </div>
+                        </div>
+                        <button class="w-full gradient-bg text-white py-3 rounded-lg font-medium hover:shadow-lg transition-all">
+                            Voir détails
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Carte 2 -->
+                <div class="property-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
+                    <div class="h-48 relative image-bg" style="background-image: url('./maison.jpg');">
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-[var(--hc-primary)] text-white text-xs font-medium px-3 py-1 rounded-full">Nouveau</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-semibold text-gray-900">Appartement Moderne</h3>
+                            <span class="text-xl font-bold text-[var(--hc-primary)]">60 000 FCFA</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Par Owen Bailleur • Il y a 3h</p>
+                        <div class="flex items-center gap-4 text-gray-600 text-sm mb-4">
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-bed"></i>
+                                <span>2 ch.</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-bath"></i>
+                                <span>2 SdB</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-ruler"></i>
+                                <span>45 m²</span>
+                            </div>
+                        </div>
+                        <button class="w-full gradient-bg text-white py-3 rounded-lg font-medium hover:shadow-lg transition-all">
+                            Voir détails
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Carte 3 -->
+                <div class="property-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
+                    <div class="h-48 relative image-bg" style="background-image: url('./img/img2.jpeg');">
+                        <div class="absolute top-3 left-3">
+                            <span class="bg-[var(--hc-primary)] text-white text-xs font-medium px-3 py-1 rounded-full">Nouveau</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-semibold text-gray-900">Appartement Moderne</h3>
+                            <span class="text-xl font-bold text-[var(--hc-primary)]">60 000 FCFA</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Par Boris Luc • Il y a 4h</p>
+                        <div class="flex items-center gap-4 text-gray-600 text-sm mb-4">
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-bed"></i>
+                                <span>2 ch.</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-bath"></i>
+                                <span>2 SdB</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-ruler"></i>
+                                <span>45 m²</span>
+                            </div>
+                        </div>
+                        <button class="w-full gradient-bg text-white py-3 rounded-lg font-medium hover:shadow-lg transition-all">
+                            Voir détails
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-12 flex flex-col items-center">
+                <div class="flex gap-2 mb-4">
+                    <button class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-[var(--hc-primary)] hover:text-[var(--hc-primary)]">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-[var(--hc-primary)] text-white rounded-lg">1</button>
+                    <button class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-[var(--hc-primary)] hover:text-[var(--hc-primary)]">2</button>
+                    <button class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-[var(--hc-primary)] hover:text-[var(--hc-primary)]">3</button>
+                    <span class="px-2 flex items-center">...</span>
+                    <button class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-[var(--hc-primary)] hover:text-[var(--hc-primary)]">7</button>
+                    <button class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-[var(--hc-primary)] hover:text-[var(--hc-primary)]">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <p class="text-gray-500 text-sm">156 annonces disponibles</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pourquoi nous choisir -->
+    <section class="py-12 md:py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- En-tête -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pourquoi choisir Home Cameroon ?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Nous révolutionnons l'immobilier locatif avec des solutions innovantes et sécurisées</p>
+            </div>
+
+            <!-- Grille des avantages -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Sécurité -->
+                <div class="bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-all">
+                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Sécurité garantie</h3>
+                    <p class="text-gray-600">Tous les bailleurs sont vérifiés et chaque annonce est contrôlée pour éviter les arnaques.</p>
+                </div>
+
+                <!-- Paiements -->
+                <div class="bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-all">
+                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-lock text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Paiements sécurisés</h3>
+                    <p class="text-gray-600">Système d'escrow pour protéger vos paiements jusqu'à la fin de la location.</p>
+                </div>
+
+                <!-- Support -->
+                <div class="bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-all">
+                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-headset text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Support dédié</h3>
+                    <p class="text-gray-600">Équipe locale disponible pour vous accompagner à chaque étape de votre location.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+<!-- 
+  COMPOSANT FOOTER HOME CAMEROON - AVEC PRÉFIXE
+  Encapsulé pour éviter les conflits CSS
+-->
+
+<!-- Configuration Tailwind + préfixe personnalisé -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        prefix: 'hc-',
+        theme: {
+            extend: {
+                colors: {
+                    'primary': '#E54801',
+                    'primary-dark': '#913327',
+                    'secondary': '#1B0B38',
+                    'light': '#FAF9F5',
+                    'text': '#333333',
+                    'text-light': '#666666',
+                    'footer-bg': '#2c1b3d',
+                    'footer-social': '#4a2c5d',
+                    'gray-300': '#d1d5db',
+                    'gray-400': '#9ca3af',
+                    'gray-500': '#6b7280',
+                    'gray-600': '#4b5563',
+                    'gray-700': '#374151'
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    .hc-footer-wrapper * {
+        font-family: 'Inter', sans-serif;
+    }
+</style>
+
+<div class="hc-footer-wrapper">
+    <footer class="hc-bg-footer-bg hc-text-gray-300 hc-pt-10 hc-pb-6 hc-mt-auto">
+        <div class="hc-container hc-mx-auto hc-px-4">
+            <!-- Contenu principal du footer -->
+            <div class="hc-grid hc-grid-cols-1 md:hc-grid-cols-2 lg:hc-grid-cols-4 hc-gap-8 hc-mb-10">
+                <!-- Colonne 1: Logo et description -->
+                <div>
+                    <div class="hc-text-primary hc-text-3xl hc-font-bold hc-mb-4">Home Cameroon</div>
+                    <p class="hc-text-gray-400 hc-text-sm hc-leading-relaxed">
+                        La plateforme n°1 pour trouver votre logement idéal au Cameroun.
+                        Studios, chambres, appartements, maisons et villas modernes à Yaoundé,
+                        Douala et partout au pays.
+                    </p>
+                </div>
+
+                <!-- Colonne 2: Liens rapides -->
+                <div>
+                    <h3 class="hc-text-primary hc-text-lg hc-font-semibold hc-mb-6">Liens rapides</h3>
+                    <ul class="hc-space-y-3">
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                Accueil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                Catégories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                Toutes les annonces
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                Publier une annonce
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                À propos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="hc-text-gray-300 hover:hc-text-primary hc-transition-colors hc-duration-300">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Colonne 3: Contact -->
+                <div>
+                    <h3 class="hc-text-primary hc-text-lg hc-font-semibold hc-mb-6">Contact</h3>
+                    <div class="hc-space-y-4">
+                        <div class="hc-flex hc-items-start">
+                            <i class="fas fa-phone hc-text-primary hc-mt-1 hc-mr-3"></i>
+                            <span class="hc-text-gray-300">+237 6 99 99 99 99</span>
+                        </div>
+                        <div class="hc-flex hc-items-start">
+                            <i class="fas fa-envelope hc-text-primary hc-mt-1 hc-mr-3"></i>
+                            <span class="hc-text-gray-300">contact@homecameroun.cm</span>
+                        </div>
+                        <div class="hc-flex hc-items-start">
+                            <i class="fas fa-map-marker-alt hc-text-primary hc-mt-1 hc-mr-3"></i>
+                            <span class="hc-text-gray-300">Yaoundé & Douala, Cameroun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonne 4: Réseaux sociaux -->
+                <div>
+                    <h3 class="hc-text-primary hc-text-lg hc-font-semibold hc-mb-6">Suivez-nous</h3>
+                    <div class="hc-flex hc-space-x-4 hc-mb-6">
+                        <a href="#"
+                            class="hc-w-12 hc-h-12 hc-bg-footer-social hc-rounded-full hc-flex hc-items-center hc-justify-center hc-text-white hover:hc-bg-primary hc-transition-all hc-duration-300 hc-transform hover:hc--translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="hc-w-12 hc-h-12 hc-bg-footer-social hc-rounded-full hc-flex hc-items-center hc-justify-center hc-text-white hover:hc-bg-primary hc-transition-all hc-duration-300 hc-transform hover:hc--translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="hc-w-12 hc-h-12 hc-bg-footer-social hc-rounded-full hc-flex hc-items-center hc-justify-center hc-text-white hover:hc-bg-primary hc-transition-all hc-duration-300 hc-transform hover:hc--translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="hc-w-12 hc-h-12 hc-bg-footer-social hc-rounded-full hc-flex hc-items-center hc-justify-center hc-text-white hover:hc-bg-primary hc-transition-all hc-duration-300 hc-transform hover:hc--translate-y-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    <div class="hc-flex hc-items-center">
+                        <span class="hc-text-gray-400 hc-text-sm hc-mr-2">Supporté avec fierté au</span>
+                        <span class="hc-text-2xl">🇨🇲</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Séparateur -->
+            <div class="hc-border-t hc-border-gray-700 hc-pt-6">
+                <!-- Section inférieure -->
+                <div class="hc-flex hc-flex-col md:hc-flex-row hc-justify-between hc-items-center">
+                    <div class="hc-text-gray-500 hc-text-sm hc-mb-4 md:hc-mb-0">
+                        © 2025 Home Cameroon - Tous droits réservés.
+                    </div>
+
+                    <div class="hc-flex hc-flex-wrap hc-justify-center hc-gap-4 md:hc-gap-6">
+                        <a href="#"
+                            class="hc-text-gray-400 hover:hc-text-primary hc-text-sm hc-transition-colors hc-duration-300">
+                            Mentions légales
+                        </a>
+                        <span class="hc-text-gray-600">|</span>
+                        <a href="#"
+                            class="hc-text-gray-400 hover:hc-text-primary hc-text-sm hc-transition-colors hc-duration-300">
+                            Politique de confidentialité
+                        </a>
+                        <span class="hc-text-gray-600">|</span>
+                        <a href="#"
+                            class="hc-text-gray-400 hover:hc-text-primary hc-text-sm hc-transition-colors hc-duration-300">
+                            Conditions d'utilisation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Lien Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        // Animation des cartes au survol
+        document.querySelectorAll('.property-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+                this.style.boxShadow = '0 20px 40px rgba(27, 11, 56, 0.15)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Animation des catégories
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 25px rgba(229, 72, 1, 0.15)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
